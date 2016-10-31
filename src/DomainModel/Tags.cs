@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace DomainModel
 {
-    public class Class1
+    public class Tags
     {
-        public Class1()
-        {
-        }
+        public int PostId { get; set; }
+        public string TagsDesc { get; set; }
     }
 }
