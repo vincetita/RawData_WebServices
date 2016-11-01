@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace MySqlDatabase
 {
-    public class Class1
+    public class DataService : IDataService
+
     {
-        public Class1()
-        {
-        }
+
     }
 }
