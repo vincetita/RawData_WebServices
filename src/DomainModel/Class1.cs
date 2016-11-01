@@ -10,6 +10,7 @@ namespace DomainModel
         public Class1()
         {
             Console.WriteLine("test");
+            
         }
     }
 }
