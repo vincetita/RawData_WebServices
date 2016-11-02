@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-
-namespace MySqlDatabase
+namespace WebServiceLayer.Controllers
 {
-    public class DataService : IDataService
-
+    public class BaseController
     {
 
     }

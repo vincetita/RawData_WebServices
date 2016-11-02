@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
-    interface IDataService
+    public interface IDataService
     {
         IList<Comments> GetComments();
+        IList<Posts> GetPosts();
+        IList<Answers> GetAnswers();
     }
 }
