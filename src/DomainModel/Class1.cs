@@ -9,6 +9,8 @@ namespace DomainModel
     {
         public Class1()
         {
+            Console.WriteLine("xxxxx");
+
         }
     }
 }
