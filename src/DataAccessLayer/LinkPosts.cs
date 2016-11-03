@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
-    interface LinkPosts
+    interface LinkPosts // working on linkPost
     {
         IEnumerable<LinkedList> GetLinkPost(int limit, int offset);
         int GetNumberOfLinkPosts();
