@@ -21,7 +21,7 @@ namespace MySqlDatabase
 
 
             modelBuilder.Entity<History>().ToTable("history");
-            modelBuilder.Entity<History>().Property(h => h.HistoryId).HasColumnName("historyid");
+            modelBuilder.Entity<History>().Property(h => h.HistoryId).HasColumnName("id");
             modelBuilder.Entity<History>().Property(h => h.Keyword).HasColumnName("keyword");
             modelBuilder.Entity<History>().Property(h => h.SearchDate).HasColumnName("searchdate");
 
