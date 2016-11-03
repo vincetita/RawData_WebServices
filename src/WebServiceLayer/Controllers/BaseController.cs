@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MySqlDatabase
+namespace WebServiceLayer.Controllers
 {
-    public class Class1
+    public class BaseController
     {
-        public Class1()
-        {
-        }
+
     }
 }
