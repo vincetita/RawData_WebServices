@@ -1,8 +1,10 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using DomainModel;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,8 +15,8 @@ namespace WebServiceLayer.Controllers
     {
         // GET: api/values
         [HttpGet]
-
-        public IEnumerable<string> Get(int page = 0, int pagesize = congfig.DefaultPageSize)
+        [Route("")]
+        public IEnumerable<LinkPosts> Get(int page = 0, int pagesize = 5)// when Adana is finished with the config will make ref to it
         {
             int limit = pagesize;
             int offset = page * pagesize;
