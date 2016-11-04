@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DomainModel;
-
+using DataAccessLayer;
 
 namespace MySqlDatabase
 {
-    public class DataService : LinkPost
-
+    public class DataService : IDataService
     {
-
-        IList<Category> GetCategories(int page, int pagesize);
-        Category GetCategory(int id);
-        void AddCategory(Category category);
-        bool UpdateCategory(Category category);
-        bool DeleteCategory(int id);
-        int GetNumberOfCategories();
-
+        public IList<LinkPosts> GetLinkToPost(int limit, int offset)
+        {
+            return null;
+            //using (var db = new MySqlDBContext())
+            //{
+            //    return db.LinkPost
+            //        .OrderBy(c => c.PostId)
+            //        .Skip(offset)
+            //        .Take(limit)
+            //        .ToList();
+            //}
+        }
     }
 }

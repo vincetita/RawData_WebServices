@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
-    interface IDataService
+    public interface IDataService
     {
-        IList<Comments> GetComments();
+        IList<LinkPosts> GetLinkToPost(int limit, int offset);
     }
 }

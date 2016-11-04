@@ -16,7 +16,9 @@
     "Microsoft.Extensions.Logging.Console": "1.0.0",
     "Microsoft.Extensions.Logging.Debug": "1.0.0",
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
-    "DomainModel": "1.0.0-*"
+    "DomainModel": "1.0.0-*",
+    "DataAccessLayer": "1.0.0-*",
+    "MySqlDatabase": "1.0.0-*"
   },
 
   "tools": {
