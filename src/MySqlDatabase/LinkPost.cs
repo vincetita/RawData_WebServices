@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MySqlDatabase
 {
-    public class IDataService
+    public class LinkPost
     {
                  LinkePost
 

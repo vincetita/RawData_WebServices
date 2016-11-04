@@ -7,7 +7,7 @@ using DomainModel;
 
 namespace MySqlDatabase
 {
-    public class DataService : IDataService
+    public class DataService : LinkPost
 
     {
 
