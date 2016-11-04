@@ -3,6 +3,7 @@
 
   "dependencies": {
     "DataAccessLayer": "1.0.0-*",
+    "DomainModel": "1.0.0-*",
     "NETStandard.Library": "1.6.0"
   },
 
