@@ -11,13 +11,7 @@ namespace MySqlDatabase
     {
         public DbSet<Comments> Comment { get; set; }
         public DbSet<Posts> Post { get; set; }
-
-        public IList<Tags> GetTags()
-        {
-            throw new NotImplementedException();  /* to be implemented*/
-        }
-
-
+        public DbSet<Tags> Tags { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -42,6 +36,11 @@ namespace MySqlDatabase
             modelBuilder.Entity<Answers>().Property(a => a.AnswerId).HasColumnName("answerid");
             modelBuilder.Entity<Answers>().Property(a => a.PostId).HasColumnName("postid");
             modelBuilder.Entity<Answers>().Property(a => a.ParentId).HasColumnName("parentid");
+
+            modelBuilder.Entity<Tags>().ToTable("tags");
+            modelBuilder.Entity<Tags>().Property(t => t.PostId).HasColumnName("postid");
+            modelBuilder.Entity<Tags>().Property(t => t.TagsDesc).HasColumnName("tags");
+           
 
 
 

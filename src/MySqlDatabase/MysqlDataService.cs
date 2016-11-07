@@ -30,6 +30,12 @@ namespace MySqlDatabase
             throw new NotImplementedException();
         }
 
-       
+
+        public IList<Tags> GetTags()
+        {
+            throw new NotImplementedException();  /* to be implemented*/
+        }
+
+
     }
 }
