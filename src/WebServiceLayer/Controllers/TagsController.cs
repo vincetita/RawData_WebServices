@@ -2,16 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DataAccessLayer;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace WebServiceLayer.Controllers
 {
-    [Route("api/[controller]")]
-    public class TagsController : Controller
+    [Route("api/tags")]
+    public class TagsController : BaseController
     {
         // GET: api/values
+        public TagsController(IDataService dataService) : base(dataService)
+        {
+        }
+
         [HttpGet]
         public IEnumerable<string> Get()
         {
