@@ -51,7 +51,7 @@ namespace MySqlDatabase
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql("server=localhost;database=project_portfolio1_stackoverflow; uid=root; pwd=root");
+            optionsBuilder.UseMySql("server=localhost;database=vtsn; uid=root; pwd=root");
             base.OnConfiguring(optionsBuilder);
         }
     }
