@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 
 namespace WebServiceLayer.JsonModel
 {
-    public class MarkedPosts
+    public class MarkedPostsModel
     {
+        public string Url { get; set; }
+        public int LinkPostId { get; set; }
     }
 }
