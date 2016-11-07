@@ -12,6 +12,14 @@ namespace MySqlDatabase
         public DbSet<Comments> Comment { get; set; }
         public DbSet<Posts> Post { get; set; }
 
+        public IList<Tags> GetTags()
+        {
+            throw new NotImplementedException();  /* to be implemented*/
+        }
+
+
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Comments>().ToTable("comments");

@@ -11,5 +11,9 @@ namespace DataAccessLayer
         IList<Comments> GetComments();
         IList<Posts> GetPosts();
         IList<Answers> GetAnswers();
+        IList<Tags> GetTags();
+
+
+
     }
 }
