@@ -20,7 +20,7 @@ namespace WebServiceLayer.Controllers
         // GET: api/values
         [HttpGet]
         [Route("")]
-        public IActionResult Get(int page = 0, int pagesize = 5)// when Adana is finished with the config will make ref to it
+        public IActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize) // Ref to Config file
         {
             int limit = pagesize;
             int offset = page * pagesize;

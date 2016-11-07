@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MySqlDatabase;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebServiceLayer.Controllers
 {
-    [Route("api/linkposts")]
+    [Route("api/markedposts")]
     public class MarkedPostsController : BaseController
     {
         public MarkedPostsController(DataService dataService) : base(dataService)
         {
         }
 
-public IHttpActionResult Get(int page = 0, int pagesize =5  //Config.DefaultPageSize)// Ref will be made when Adnan is finished with Config
+        public IActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize) // Ref to Config file
         {
             int limit = pagesize;
             int offset = page * pagesize;
-            var markedPost = DataService.GetAllMakedPosts(limit, offset).Select(mp => ModelFactory.Map(mp, Url));
+            var markedPost = DataService.GetAllMakedPosts(limit, offset);
 
             var totalMarkedPosts = DataService.GetNumberOfMarkedPosts();
             var lastpage = totalMarkedPosts / pagesize;
@@ -35,7 +36,7 @@ public IHttpActionResult Get(int page = 0, int pagesize =5  //Config.DefaultPage
         }
 
         /* Unmark Post*/
-        public IHttpActionResult Put(int id)
+        public IActionResult Put(int id)
         {
             if (DataService.UnMarkPost(id) == false)
                 return NotFound();
