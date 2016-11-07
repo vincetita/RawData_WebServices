@@ -35,13 +35,28 @@ namespace MySqlDatabase
             throw new NotImplementedException();
         }
 
+
         public bool UnMarkPost(int id)
         {
             using (var db = new MySqlDBContext())
             {
-                if (DataService.UnMarkPost(id) == false)
-                    return NotFound();
-                return Ok();
+               
+                MarkedPosts markedPost  = db.MarkPost.FirstOrDefault(p=>p.PostId == id);
+                if (markedPost != null)
+                {
+                    try
+                    {
+                        db.MarkPost.Remove(markedPost);
+                        db.SaveChanges();
+                        return true;
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
+                }
+                return false;
+
             }
         }
     }

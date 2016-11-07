@@ -14,7 +14,7 @@ namespace WebServiceLayer.JsonModel
             // hint: use AutoMapper
             return new LinkPostModel
             {
-                Url = url.Link(Config.LinkPostRoute, new { id = linkpost.PostId }),
+                Url = url.Link(Config.LinkPostsRoute, new { id = linkpost.PostId }),
                 LinkPostId = linkpost.LinkPostId
             };
         }
@@ -27,5 +27,8 @@ namespace WebServiceLayer.JsonModel
                 LinkPostId = model.LinkPostId,
             };
         }
+
+        //markpost
+        //copy and past
     }
 }

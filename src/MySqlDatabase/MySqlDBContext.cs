@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace MySqlDatabase
 {
-    public class MySqlDBContext  : DbContext
+    public class MySqlDBContext: DbContext
     {
         public DbSet<LinkPosts> LinkPost { get; set; }
+        public DbSet<MarkedPosts> MarkPost { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -17,14 +18,14 @@ namespace MySqlDatabase
             modelBuilder.Entity<LinkPosts>().ToTable("linkposts");
             //modelBuilder.Entity<LinkPosts>().Property(t => t.PostId).HasColumnName("id");
 
-
+            modelBuilder.Entity<MarkedPosts>().ToTable("markedposts");
             base.OnModelCreating(modelBuilder);
         }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql("server=localhost;database=sakila;uid=root;pwd=12345Mail");
+           optionsBuilder.UseMySql("server=localhost;database=database3;uid=root;pwd=12345Mail");
             base.OnConfiguring(optionsBuilder);
         }
     }
