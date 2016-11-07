@@ -2,11 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DataAccessLayer;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebServiceLayer.Controllers
 {
-    public class BaseController
+    public class BaseController:Controller
     {
+        public BaseController(IDataService dataService)
+        {
+            DataService = dataService;
+        }
+
+        public IDataService DataService { get; }
 
     }
 }
