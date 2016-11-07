@@ -13,9 +13,10 @@ namespace WebServiceLayer
         public const string LinkPostsRoute = "LinkPostsRoute";
         public const string PostsRoute = "PostsRoute";
         public const string CommentsRoute = "CommentsRoute";
-        public const string TagsRouts = "TagsRouts";
+        public const string TagsRoute = "TagsRoute";
         public const string QuestionsRoute= "QuestionsRoute";
         public const string AnsweresRoute= "AnsweresRoute";
+        public const string HistoryRoute = "HistoryRoute";
 
     }
 
