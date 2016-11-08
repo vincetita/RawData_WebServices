@@ -18,9 +18,13 @@ namespace WebServiceLayer.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<string> Get()
+        [Route("")]
+        public IActionResult Get(int page=0, int pagesize=5) //config
         {
-            return new string[] { "value1", "value2" };
+            int limit = pagesize;
+            int offset = page*pagesize;
+            var listOfTags = DataService.GetLinkToTags(limit, offset);
+            return Ok(listOfTags);
         }
 
         // GET api/values/5
@@ -30,22 +34,45 @@ namespace WebServiceLayer.Controllers
             return "value";
         }
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
+        //// POST api/values
+        //[HttpPost]
+        //public void Post([FromBody]string value)
+        //{
+        //}
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+        //// PUT api/values/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody]string value)
+        //{
+        //}
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //// DELETE api/values/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

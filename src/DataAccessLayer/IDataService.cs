@@ -13,8 +13,6 @@ namespace DataAccessLayer
         IList<Posts> GetPosts();
         IList<Answers> GetAnswers();
         IList<Tags> GetTags();
-
-
-
+        IList<Tags> GetLinkToTags(int limit, int offset);
     }
 }
