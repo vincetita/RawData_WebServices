@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DomainModel
+namespace WebServiceLayer.JsonModels
 {
-    public class Posts
+    public class PostsModel
     {
-        //[Key]
-        public int PostsId { get; set; }
+        public string Url { get; set; }
         public int PostTypeId { get; set; }
         public DateTime creationDate { get; set; }
         public int Score { get; set; }
         public string Body { get; set; }
         public int OwnerUserId { get; set; }
-        
     }
 }

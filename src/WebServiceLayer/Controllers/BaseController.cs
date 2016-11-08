@@ -1,12 +1,47 @@
-﻿using System;
+﻿using DataAccessLayer;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebServiceLayer.JsonModels;
 
 namespace WebServiceLayer.Controllers
 {
-    public class BaseController
+    public class BaseController : Controller
     {
+        public IDataService DataService { get; }
 
+        public BaseController(IDataService dataService)
+        {
+            DataService = dataService; 
+        }      
+        protected string GetPrevUrl(IUrlHelper url, int page, int pageSize)
+        {
+            if (IsFirstPage(page)) return null;
+            return url.Link(Config.CommentsRoute, new { page = page - 1, pageSize });
+
+        }
+
+        protected string GetNextUrl(IUrlHelper url, int page, int pageSize, int total)
+        {
+            if (IsLastPage(page, pageSize, total)) return null;
+            return url.Link(Config.CommentsRoute, new { page = page + 1, pageSize });
+
+        }
+
+        protected static bool IsFirstPage(int page)
+        {
+            return page == 0;
+        }
+
+        protected bool IsLastPage(int page, int pageSize, int total)
+        {
+            if (total - page * pageSize > 0)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

@@ -7,17 +7,28 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using DataAccessLayer;
+using MySqlDatabase;
+using AutoMapper;
+using WebServiceLayer.JsonModels;
 
 namespace WebServiceLayer
 {
     public class Startup
     {
+        private MapperConfiguration _mapperConfiguration { get; set; }
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+
+            //_mapperConfiguration = new MapperConfiguration(cfg =>
+            //{
+            //    cfg.AddProfile(new AutoMapperClass());
+            //});
 
             if (env.IsEnvironment("Development"))
             {
@@ -38,6 +49,10 @@ namespace WebServiceLayer
             services.AddApplicationInsightsTelemetry(Configuration);
 
             services.AddMvc();
+            services.AddSingleton<IDataService, MysqlDataService>();
+
+            //services.AddSingleton<IMapper>(sp => _mapperConfiguration.CreateMapper());
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline

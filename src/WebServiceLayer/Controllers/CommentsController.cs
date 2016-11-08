@@ -3,42 +3,81 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MySqlDatabase;
+using DataAccessLayer;
+using WebServiceLayer.JsonModels;
+using AutoMapper;
+using DomainModel;
 
 namespace WebServiceLayer.Controllers
 {
-    [Route("api/[controller]")]
-    public class CommentsController : Controller
+    [Route("api/comments")]
+    public class CommentsController : BaseController
     {
-        // GET api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
+        //private IMapper _mapper { get; set; }
+        //Comments comment = new Comments();
+        
+        public CommentsController(IDataService dataService) : base(dataService)     // , IMapper mapper Did nt understand the logic : base 
         {
-            return new string[] { "value1", "value2" };
+            //mapper = _mapper;
+        }   
+
+        // GET api/values
+        [HttpGet(Name = Config.CommentsRoute)]
+        public IActionResult Get(int page = 0, int pageSize= Config.DefaultPageSize)
+        {
+
+            //Url.Link(Config.CategoryRoute, new { id = 5 });
+
+            var data = DataService.GetComments(page, pageSize)
+                .Select(c => ModelFactory.Map(c, Url));
+
+
+            //var data = DataService.GetComments(page, pageSize)
+            //    .Select(_mapper.Map<CommentsModel>(comment.Comments));
+
+            var total = DataService.GetTotalComments();
+
+            var result = new
+            {
+                Total = total,
+                Prev = GetPrevUrl(Url, page, pageSize),
+                Next = GetNextUrl(Url, page, pageSize, total),
+                data = data
+            };
+
+            return Ok(result);
+
         }
+
+       
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("{id}", Name = Config.CommentRoute)]
+        //[Route("{id}")]           // We can use route for routing also
+        public IActionResult Get(int id)
         {
-            return "value";
+            var comments = DataService.GetComment(id);
+            if (comments == null) return NotFound();
+            return Ok(ModelFactory.Map(comments, Url)); 
         }
+        
+        //// POST api/values
+        //[HttpPost]
+        //public void Post([FromBody]string value)
+        //{
+        //}
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
+        //// PUT api/values/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody]string value)
+        //{
+        //}
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //// DELETE api/values/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }

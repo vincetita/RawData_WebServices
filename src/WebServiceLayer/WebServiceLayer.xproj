@@ -15,5 +15,10 @@
   <PropertyGroup>
     <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
+  <ItemGroup>
+    <DnxInvisibleCompile Include="Controllers\PostsController.cs" />
+    <DnxInvisibleCompile Include="JsonModels\AutoMapperClass.cs" />
+    <DnxInvisibleCompile Include="JsonModels\PostsModel.cs" />
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\DotNet.Web\Microsoft.DotNet.Web.targets" Condition="'$(VSToolsPath)' != ''" />
 </Project>
