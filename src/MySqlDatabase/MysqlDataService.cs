@@ -33,8 +33,12 @@ namespace MySqlDatabase
 
         public IList<Tags> GetTags()
         {
-            throw new NotImplementedException();  /* to be implemented*/
-        }
+            using (var db=new MysqlDataContext())
+            {
+                return db.Tags.OrderBy(t => t.PostId).ToList();
+            }    
+        }   
+        
 
 
     }
