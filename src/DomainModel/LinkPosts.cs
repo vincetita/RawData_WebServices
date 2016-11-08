@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MySqlDatabase
+namespace DomainModel
 {
-    public class Class1
+    public class LinkPosts
     {
         public Class1()
         {
