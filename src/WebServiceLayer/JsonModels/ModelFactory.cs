@@ -23,15 +23,17 @@ namespace WebServiceLayer.JsonModels
             };
         }
 
-        //public static PostsModel Map(Posts post, IUrlHelper url)
-        //{
-        //    return new PostsModel
-        //    {
-        //        Url = url.link(Config.PostsRoute, new { id = post.PostsId}),
-        //        Pos
-
-
-        //    }
-        //}
+        public static PostsModel Map(Posts post, IUrlHelper url)
+        {
+            return new PostsModel
+            {
+                Url = url.Link(Config.PostsRoute, new { id = post.PostsId }),
+                PostTypeId = post.PostTypeId,
+                Body = post.Body,
+                creationDate = post.creationDate,
+                OwnerUserId = post.OwnerUserId,
+                Score = post.Score
+            };
+        }
     }
 }
