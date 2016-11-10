@@ -7,8 +7,6 @@ namespace DomainModel
 {
     public class LinkPosts
     {
-        public Class1()
-        {
-        }
+       
     }
 }

@@ -10,31 +10,31 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebServiceLayer.Controllers
 {
     [Route("api/[controller]")]
-    public class QuestionController : Controller
+    public class HistoryController : Controller
     {
         private readonly IDataService _dataService;
 
-        public QuestionController(IDataService dataService)
+        public HistoryController(IDataService dataService)
         {
-            _dataService = dataService;
+         _dataService = dataService;
         }
+
         // GET: api/values
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_dataService.GetQuestion());
+            return Ok(_dataService.GetHistories());
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            
-            var question = _dataService.GetQuestion(id);
-            if (question == null) return NotFound();
-            return Ok(question);
-        }
-
+            var history = _dataService.GetHistories(id);
+            if (history == null) return NotFound();
+            return Ok(history);
+        } 
+          
         // POST api/values
         [HttpPost]
         public void Post([FromBody]string value)

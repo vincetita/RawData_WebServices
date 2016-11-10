@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DataAccessLayer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using MySqlDatabase;
 
 namespace WebServiceLayer
 {
@@ -38,6 +40,7 @@ namespace WebServiceLayer
             services.AddApplicationInsightsTelemetry(Configuration);
 
             services.AddMvc();
+            services.AddSingleton<IDataService, MysqlDataService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
