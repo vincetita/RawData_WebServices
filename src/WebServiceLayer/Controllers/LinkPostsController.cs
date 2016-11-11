@@ -1,10 +1,8 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using DomainModel;
 using MySqlDatabase;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,9 +10,9 @@ using MySqlDatabase;
 namespace WebServiceLayer.Controllers
 {
     [Route("api/linkposts")]
-    public class LinkPostController : BaseController
+    public class LinkPostsController : BaseController
     {
-        public LinkPostController(DataService dataService) : base(dataService)
+        public LinkPostsController(DataService dataService) : base(dataService)
         {
         }
         // GET: api/values
@@ -28,7 +26,7 @@ namespace WebServiceLayer.Controllers
 
             //var listOfLinkToPost = DataService.GetLinkToPost(limit, offset).select(prop => modelfactory.map(prop, Url));
 
-            //var totalLinkPosts = _repository.GetNumberOfLinkPosts();
+            //var totalLinkPosts = DataService.GetNumberOfLinkPosts();
 
 
             //var lastpage = totalLinkPosts;
@@ -37,17 +35,16 @@ namespace WebServiceLayer.Controllers
 
             //var next = page >= lastpage ? null : Url.Link(config.LinkPostsRoute, new { page = page + 1, pagesize });
 
-            //var result = new
+            var result = new
 
-            //{
-            //    Total = totalLinkPosts,
-            //    Prev = prev,
-            //    Nex = next,
-            //    Data = listOfLinkToPost
+            {
+                //Total = totalLinkPosts,
+                //Prev = prev,
+                //Nex = next,
+                Data = listOfLinkToPost
 
-            //};
-            //return Ok(result);
-            return Ok(listOfLinkToPost);
+            };
+            return Ok(result);
         }
 
         // GET api/values/5
@@ -58,10 +55,5 @@ namespace WebServiceLayer.Controllers
 
         //    return ok(linkToPostByPostid);
         //}
-
-
     }
 }
-
-   
-        

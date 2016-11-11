@@ -25,14 +25,27 @@ namespace MySqlDatabase
         //Marked post
         public IList<MarkedPosts> GetAllMakedPosts(int limit, int offset)
         {
-            throw new NotImplementedException();
+            using (var database = new MySqlDBContext())
+            {
+                var postData = database.MarkPost
+                    .OrderBy(m => m.markedId)
+                    .Skip(offset)
+                    .Take(limit)
+                    .ToList();
+                return postData;
+            }
         }
 
-       
+
 
         public int GetNumberOfMarkedPosts()
         {
-            throw new NotImplementedException();
+            {
+                using (var db = new MySqlDBContext())
+                {
+                    return db.MarkPost.Count();
+                }
+            }
         }
 
 
@@ -40,8 +53,8 @@ namespace MySqlDatabase
         {
             using (var db = new MySqlDBContext())
             {
-               
-                MarkedPosts markedPost  = db.MarkPost.FirstOrDefault(p=>p.PostId == id);
+
+                MarkedPosts markedPost = db.MarkPost.FirstOrDefault(p => p.PostId == id);
                 if (markedPost != null)
                 {
                     try

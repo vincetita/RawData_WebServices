@@ -9,6 +9,7 @@ namespace WebServiceLayer.JsonModel
 {
     public class ModelFactory
     {
+
         public static LinkPostModel Map(LinkPosts linkpost, IUrlHelper url)
         {
             // hint: use AutoMapper
@@ -29,6 +30,26 @@ namespace WebServiceLayer.JsonModel
         }
 
         //markpost
-        //copy and past
+
+
+        public static MarkedPostsModel Map(MarkedPosts markedposts, IUrlHelper url)
+        {
+
+            return new MarkedPostsModel
+            {
+                Url = url.Link(Config.MarkedPostsRoute, new { id = markedposts.PostId }),
+                LinkPostId = markedposts.markedId
+            };
+        }
+
+        
+        public static MarkedPosts Map(MarkedPostsModel model)
+        {
+
+            return new MarkedPosts
+            {
+                PostId = model.LinkPostId
+            };
+        }
     }
 }
