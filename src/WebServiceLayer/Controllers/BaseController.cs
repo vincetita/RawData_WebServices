@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DataAccessLayer;
+// ReSharper disable once RedundantUsingDirective
+//using DataAccessLayer;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebServiceLayer.Controllers

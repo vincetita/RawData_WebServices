@@ -9,9 +9,9 @@ namespace DataAccessLayer
 {
     public interface IDataService 
     {
-        IList<Comments> GetComments();
-        IList<Posts> GetPosts();
-        IList<Answers> GetAnswers();
+        //IList<Comments> GetComments();
+        //IList<Posts> GetPosts();
+        //IList<Answers> GetAnswers();
         IList<Tags> GetTags();
         IList<Tags> GetLinkToTags(int limit, int offset);
     }

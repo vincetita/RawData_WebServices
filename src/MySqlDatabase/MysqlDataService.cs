@@ -37,9 +37,11 @@ namespace MySqlDatabase
             {
                 return db.Tags.OrderBy(t => t.PostId).ToList();
             }    
-        }   
-        
+        }
 
-
+        public IList<Tags> GetLinkToTags(int limit, int offset)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
