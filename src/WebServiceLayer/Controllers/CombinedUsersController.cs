@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DataAccessLayer;
-using DomainModel;
 using Microsoft.AspNetCore.Mvc;
 using WebServiceLayer.JsonModels;
 
@@ -11,21 +10,20 @@ using WebServiceLayer.JsonModels;
 
 namespace WebServiceLayer.Controllers
 {
-    [Route("api/tags")]
-    public class TagsController : BaseController
+    [Route("api/users")]
+    public class CombinedUsersController : BaseController
     {
-
-        public TagsController(IDataService dataService) : base(dataService)
+        public CombinedUsersController(IDataService dataService) : base(dataService)
         {
         }
 
         //// GET api/values
-        [HttpGet(Name = Config.TagsesRoute)]
+        [HttpGet(Name = Config.CombinedUsersRoute)]
         public IActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
         {
-            var data = DataService.GetTagses(page, pagesize)
+            var data = DataService.GetCombinedUserses(page, pagesize)
                 .Select(c => ModelFactory.Map(c, Url));
-            var total = DataService.GetNumberOfTags();
+            var total = DataService.GetNumberOfUsers();
 
             var result = new
             {
@@ -39,31 +37,16 @@ namespace WebServiceLayer.Controllers
         }
 
         // GET api/values/5
-       // [HttpGet("{id}", Name = Config.TagsRoute)]
-        [HttpGet("{id:int}/tags", Name = Config.TagsRoute)]
+        [HttpGet("{id}", Name = Config.CombinedUserRoute)]
         public IActionResult Get(int id)
         {
-            var tags = DataService.GetTagsById(id);
-            if (tags == null) return NotFound();
-            return Ok(ModelFactory.Map(tags, Url));
+            var user = DataService.GetCombinedUserById(id);
+            if (user == null) return NotFound();
+            return Ok(ModelFactory.Map(user, Url));
         }
 
 
-
-        //[HttpGet]
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
-
-        //// GET api/values/5
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-
-        //// POST api/values
+        // POST api/values
         //[HttpPost]
         //public void Post([FromBody]string value)
         //{
@@ -75,7 +58,7 @@ namespace WebServiceLayer.Controllers
         //{
         //}
 
-        //// DELETE api/values/5
+        // DELETE api/values/5
         //[HttpDelete("{id}")]
         //public void Delete(int id)
         //{

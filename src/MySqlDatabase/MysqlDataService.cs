@@ -12,36 +12,87 @@ namespace MySqlDatabase
     public class MysqlDataService : IDataService
 
     {
-        public IList<Answers> GetAnswers()
-        {
-            throw new NotImplementedException();
-        }
 
-        public IList<Comments> GetComments()
+        public IList<Tags> GetTagses(int page, int pagesize)
         {
             using (var db = new MysqlDataContext())
             {
-                return db.Comment.OrderBy(c => c.CommentCeated).ToList();
+                return db.Tagses
+                    .OrderBy(c => c.PostId)
+                    .Skip(page * pagesize)
+                    .Take(pagesize)
+                    .ToList();
             }
         }
 
-        public IList<Posts> GetPosts()
+        public Tags GetTagsById(int id)
         {
-            throw new NotImplementedException();
-        }
-
-
-        public IList<Tags> GetTags()
-        {
-            using (var db=new MysqlDataContext())
+            using (var db = new MysqlDataContext())
             {
-                return db.Tags.OrderBy(t => t.PostId).ToList();
-            }    
+                return db.Tagses.FirstOrDefault(c => c.PostId == id);
+
+            }
         }
 
-        public IList<Tags> GetLinkToTags(int limit, int offset)
+        public int GetNumberOfTags()
         {
-            throw new NotImplementedException();
+            using (var db = new MysqlDataContext())
+            {
+                return db.Tagses.Count();
+            }
+        }
+
+        public IList<CombinedUsers> GetCombinedUserses(int page, int pagesize)
+        {
+            using (var db = new MysqlDataContext())
+            {
+                return db.CombinedUserses
+                    .OrderBy(c => c.CombineUserId)
+                    .Skip(page * pagesize)
+                    .Take(pagesize)
+                    .ToList();
+            }
+        }
+
+        public CombinedUsers GetCombinedUserById(int id)
+        {
+            using (var db = new MysqlDataContext())
+            {
+
+                return db.CombinedUserses.FirstOrDefault(c => c.CombineUserId == id);
+            }
+        }
+
+
+        public int GetNumberOfUsers()
+        {
+            using (var db = new MysqlDataContext())
+            {
+                return db.CombinedUserses.Count();
+            }
         }
     }
+
+
+    //public class MysqlDataService : IDataService
+
+    //{
+    //    public IList<Answers> GetAnswers()
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+
+    //    public IList<Comments> GetComments()
+    //    {
+    //        using (var db = new MysqlDataContext())
+    //        {
+    //            return db.Comment.OrderBy(c => c.CommentCeated).ToList();
+    //        }
+    //    }
+
+    //    public IList<Posts> GetPosts()
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //}
 }
