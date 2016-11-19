@@ -16,17 +16,17 @@ namespace WebServiceLayer.Controllers
         {
             DataService = dataService; 
         }      
-        protected string GetPrevUrl(IUrlHelper url, int page, int pageSize)
+        protected string GetPrevUrl(string route, IUrlHelper url, int page, int pageSize)
         {
             if (IsFirstPage(page)) return null;
-            return url.Link(Config.CommentsRoute, new { page = page - 1, pageSize });
+            return url.Link(route, new { page = page - 1, pageSize });
 
         }
 
-        protected string GetNextUrl(IUrlHelper url, int page, int pageSize, int total)
+        protected string GetNextUrl(string route, IUrlHelper url, int page, int pageSize, int total)
         {
             if (IsLastPage(page, pageSize, total)) return null;
-            return url.Link(Config.CommentsRoute, new { page = page + 1, pageSize });
+            return url.Link(route , new { page = page + 1, pageSize });
 
         }
 

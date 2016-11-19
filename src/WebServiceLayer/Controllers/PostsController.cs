@@ -30,8 +30,8 @@ namespace WebServiceLayer.Controllers
             var result = new
             {
                 Total = total,
-                Prev = GetPrevUrl(Url, page, pageSize),
-                Next = GetNextUrl(Url, page, pageSize, total),
+                Prev = GetPrevUrl(Config.PostsRoute, Url, page, pageSize),
+                Next = GetNextUrl(Config.PostsRoute, Url, page, pageSize, total),
                 data = data
             };
 
@@ -42,7 +42,7 @@ namespace WebServiceLayer.Controllers
         //[Route("{id}")]           // We can use route for routing also
         public IActionResult Get(int id)
         {
-            var posts = DataService.GetPost(id);
+            var posts = DataService.GetPostAnswer(id);
             if (posts == null) return NotFound();
             return Ok(ModelFactory.Map(posts, Url));
         }

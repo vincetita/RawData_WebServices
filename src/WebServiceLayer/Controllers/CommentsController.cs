@@ -41,8 +41,8 @@ namespace WebServiceLayer.Controllers
             var result = new
             {
                 Total = total,
-                Prev = GetPrevUrl(Url, page, pageSize),
-                Next = GetNextUrl(Url, page, pageSize, total),
+                Prev = GetPrevUrl(Config.CommentsRoute, Url, page, pageSize),
+                Next = GetNextUrl(Config.CommentsRoute, Url, page, pageSize, total),
                 data = data
             };
 

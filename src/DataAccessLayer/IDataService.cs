@@ -10,13 +10,27 @@ namespace DataAccessLayer
     {
         IList<Comments> GetComments(int page, int pageSize);
         Comments GetComment(int id);
+        int GetTotalComments();
         IList<Posts> GetPosts(int page, int pageSize);
         Posts GetPost(int id);
-
-        int GetTotalComments();
-
         int GetTotalPosts();
-        //IList<Answers> GetAnswers();
+        IList<History> GetHistories(int page, int pageSize);
+        History GetHistory(int id);
+        int GetTotalHistory();
+        void AddHistory(History history);
+        bool UpdateHistory(History history);
+        bool DeleteHistory(int id);
+
+        PostAnswer GetPostAnswer(int id);
+
+        IList<OwnComments> GetOwnComments(int page, int pageSize);
+        int GetTotalOwnComments();
+        OwnComments GetOwnCommentbyID(int id);
+        void AddOwnComment(OwnComments owncomment);
+        bool UpdateOwnComment(OwnComments own);
+        bool DeleteOwnComment(int id);
+
+        //IList<Answers> GetAnswers(int page, int pageSize);
         //Answers GetAnswer(int id);
     }
 }
