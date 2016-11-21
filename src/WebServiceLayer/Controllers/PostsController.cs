@@ -42,7 +42,7 @@ namespace WebServiceLayer.Controllers
         //[Route("{id}")]           // We can use route for routing also
         public IActionResult Get(int id)
         {
-            var posts = DataService.GetPostAnswer(id);
+            var posts = DataService.GetPost(id);
             if (posts == null) return NotFound();
             return Ok(ModelFactory.Map(posts, Url));
         }

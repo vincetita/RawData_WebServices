@@ -23,8 +23,11 @@ namespace WebServiceLayer
 
         public const string AnswersRoute = "AnswersRoute";
 
+        public const string CombinedUsersRoute = "CombinedUsersRoute";
+        public const string CombinedUserRoute = "CombinedUserRoute";
 
-
+        public const string TagsRoute = "TagsRoute";
+        public const string TagRoute = "TagRoute";
 
 
     }

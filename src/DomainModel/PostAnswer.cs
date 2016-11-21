@@ -10,8 +10,8 @@ namespace DomainModel
     {
         public string Title { get; set; }
         //public string UserName { get; set; }
-        [ForeignKey("PostsId")]
-        public virtual Answers Answers { get; set; }
+       
+        //public IList<string> Answers { get; set; }
 
     }
 }

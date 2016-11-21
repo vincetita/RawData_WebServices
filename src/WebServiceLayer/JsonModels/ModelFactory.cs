@@ -48,27 +48,34 @@ namespace WebServiceLayer.JsonModels
             };
         }
 
-        public static PostsModel Map(Posts post, IUrlHelper url)
-        {
-            return new PostsModel
-            {
-                Url = url.Link(Config.PostRoute, new { id = post.PostsId }),
-                PostTypeId = post.PostTypeId,
-                Body = post.Body,
-                creationDate = post.creationDate,
-                OwnerUserId = post.OwnerUserId,
-                Score = post.Score
-            };
-        }
-
         public static PostAnswerModel Map(PostAnswer post, IUrlHelper url)
         {
             return new PostAnswerModel
             {
-                Url = url.Link(Config.AnswersRoute, new { id = post.PostsId}),
-                //Title = post.Question.Title,               
-                //UserName = post.UserName
+                Url = url.Link(Config.PostRoute, new { id = post.PostsId }),
+                //PostTypeId = post.PostTypeId,
+                //Body = post.Body,
+                //creationDate = post.creationDate,
+                //OwnerUserId = post.OwnerUserId,
+                //Score = post.Score,
+                Title = post.Title,
                 //Answers = post.Answers
+
+            };
+        }
+
+        public static PostAnswer Map(PostAnswerModel model, IUrlHelper url)
+        {
+            return new PostAnswer
+            {
+                //PostTypeId = model.PostTypeId,
+                //Body = model.Body,
+                //creationDate = model.creationDate,
+                //OwnerUserId = model.OwnerUserId,
+                //Score = model.Score,
+                Title = model.Title//,
+                //Answers = model.Answers
+                
             };
         }
 
@@ -90,6 +97,51 @@ namespace WebServiceLayer.JsonModels
                 Keyword = model.Keyword,
                 SearchDate = model.SearchDate
 
+            };
+        }
+
+        public static CombinedUsersModel Map(CombinedUsers user, IUrlHelper url)
+        {
+            return new CombinedUsersModel
+            {
+                Url = url.Link(Config.CombinedUsersRoute, new { id = user.CombineUserId }),
+                UserName = user.UserName,
+                UserCreationDate = user.UserCreationDate,
+                UserLocation = user.UserLocation,
+                UserAge = user.UserAge
+            };
+
+
+        }
+
+        public static CombinedUsers Map(CombinedUsersModel model)
+        {
+            return new CombinedUsers
+            {
+
+                UserName = model.UserName,
+                UserCreationDate = model.UserCreationDate,
+                UserLocation = model.UserLocation,
+                UserAge = model.UserAge
+            };
+        }
+
+        public static TagsModel Map(Tags tag, IUrlHelper url)
+        {
+            return new TagsModel
+            {
+                Url = url.Link(Config.TagsRoute, new { id = tag.PostId }),
+                TagsDesc = tag.TagsDesc
+            };
+
+
+        }
+
+        public static Tags Map(TagsModel model)
+        {
+            return new Tags
+            {
+                TagsDesc = model.TagsDesc
             };
         }
     }

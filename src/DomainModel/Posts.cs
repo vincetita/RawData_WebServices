@@ -19,11 +19,10 @@ namespace DomainModel
         [ForeignKey("CombinedUsers")]
         public int OwnerUserId { get; set; }
 
-        //[ForeignKey("QuestionId")]
-        //public virtual Questions Question { get; set; }
+        
+        public virtual Questions Question { get; set; }
 
-        [ForeignKey("OwnerUserId")]
-        public virtual CombinedUsers CombinedUsers { get; set; }
+        //public virtual CombinedUsers CombinedUsers { get; set; }
 
     }
 }

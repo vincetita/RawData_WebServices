@@ -16,10 +16,16 @@ namespace MySqlDatabase
         public DbSet<Questions> Question { get; set; }
         public DbSet<History> History { get; set; }
         public DbSet<OwnComments> OwnComment { get; set; }
-        
+        public DbSet<Tags> Tags { get; set; }
+        public DbSet<CombinedUsers> CombineUsers { get; set; }
+        public DbSet<SearchKeywordStoredProc> SearchKeyordStoredProc { get; set; }
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<SearchKeywordStoredProc>().HasKey(t => t.Id);
+
             modelBuilder.Entity<Comments>().ToTable("comments");
             modelBuilder.Entity<Comments>().Property(t => t.CommentId).HasColumnName("commentid");
             //modelBuilder.Entity<Comments>().HasKey(k => k.CommentId);                               // AnOther way of defining primary key in linq then data annotation
@@ -28,6 +34,8 @@ namespace MySqlDatabase
             modelBuilder.Entity<Comments>().Property(t => t.CommentText).HasColumnName("commenttext");
             modelBuilder.Entity<Comments>().Property(t => t.CommentCeated).HasColumnName("commentcreatedate");
             modelBuilder.Entity<Comments>().Property(t => t.OwnerUserId).HasColumnName("owneruserid");
+
+         
 
             modelBuilder.Entity<Posts>().ToTable("posts");
             modelBuilder.Entity<Posts>().Property(p => p.PostsId).HasColumnName("id");
@@ -66,6 +74,18 @@ namespace MySqlDatabase
             modelBuilder.Entity<OwnComments>().Property(t => t.CommentScore).HasColumnName("commentscore");
             modelBuilder.Entity<OwnComments>().Property(t => t.CommentText).HasColumnName("commentdescription");
             modelBuilder.Entity<OwnComments>().Property(t => t.CommentCreated).HasColumnName("commentdate");
+
+            modelBuilder.Entity<Tags>().ToTable("tags");
+            modelBuilder.Entity<Tags>().Property(t => t.TagsDesc).HasColumnName("tags");
+            modelBuilder.Entity<Tags>().Property(t => t.PostId).HasColumnName("postid");
+            modelBuilder.Entity<Tags>().HasKey(t => new { t.PostId, t.TagsDesc });
+
+            modelBuilder.Entity<CombinedUsers>().ToTable("combine_users");
+            modelBuilder.Entity<CombinedUsers>().Property(t => t.CombineUserId).HasColumnName("Cuserid");
+            modelBuilder.Entity<CombinedUsers>().Property(t => t.UserName).HasColumnName("Cuserdisplayname");
+            modelBuilder.Entity<CombinedUsers>().Property(t => t.UserAge).HasColumnName("Cuserage");
+            modelBuilder.Entity<CombinedUsers>().Property(t => t.UserLocation).HasColumnName("Cuserlocation");
+            modelBuilder.Entity<CombinedUsers>().Property(t => t.UserCreationDate).HasColumnName("Cusercreationdate");
 
             base.OnModelCreating(modelBuilder);
         }
