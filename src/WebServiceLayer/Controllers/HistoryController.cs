@@ -19,24 +19,24 @@ namespace WebServiceLayer.Controllers
 
         }
 
-        //[HttpGet(Name = Config.HistoriesRoute)]
-        //public IActionResult Get(int page = 0, int pageSize = Config.DefaultPageSize)
-        //{
-        //    var data = DataService.GetHistories(page, pageSize)
-        //        .Select(h => ModelFactory.Map(h, Url));
+        [HttpGet(Name = Config.HistoriesRoute)]
+        public IActionResult Get(int page = 0, int pageSize = Config.DefaultPageSize)
+        {
+            var data = DataService.GetHistories(page, pageSize)
+                .Select(h => ModelFactory.Map(h, Url));
 
-        //    var total = DataService.GetTotalHistory();
+            var total = DataService.GetTotalHistory();
 
-        //    var result = new
-        //    {
-        //        Total = total,
-        //        Prev = GetPrevUrl(Config.HistoriesRoute, Url, page, pageSize),
-        //        Next = GetNextUrl(Config.HistoriesRoute, Url, page, pageSize, total),
-        //        data = data
-        //    };
+            var result = new
+            {
+                Total = total,
+                Prev = GetPrevUrl(Config.HistoriesRoute, Url, page, pageSize),
+                Next = GetNextUrl(Config.HistoriesRoute, Url, page, pageSize, total),
+                data = data
+            };
 
-        //    return Ok(result);
-        //}
+            return Ok(result);
+        }
 
         [HttpGet("{id}", Name = Config.HistoryRoute)]
         //[Route("{id}")]           // We can use route for routing also
@@ -78,14 +78,8 @@ namespace WebServiceLayer.Controllers
             return Ok();
         }
 
-        //[HttpGet("{search}")]
-        public IActionResult Get(string search)
-        {
-            var data = DataService.GetPostsbySearchKeyword(search);
-            //.Select(h => ModelFactory.Map(h, Url));        
-
-            return Ok(data);
-        }
+        
+        
     }
 
 }

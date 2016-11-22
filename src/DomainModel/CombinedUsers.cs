@@ -13,6 +13,6 @@ namespace DomainModel
         public string UserName { get; set; }
         public DateTime UserCreationDate { get; set; }
         public string UserLocation { get; set; }
-        public int UserAge { get; set; }
+        public int? UserAge { get; set; }
     }
 }

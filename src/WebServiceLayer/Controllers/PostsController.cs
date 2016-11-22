@@ -43,6 +43,7 @@ namespace WebServiceLayer.Controllers
         public IActionResult Get(int id)
         {
             var posts = DataService.GetPost(id);
+            //var postanswer = DataService.GetAnswersForSpecificPost();
             if (posts == null) return NotFound();
             return Ok(ModelFactory.Map(posts, Url));
         }

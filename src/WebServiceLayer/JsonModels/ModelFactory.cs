@@ -48,33 +48,30 @@ namespace WebServiceLayer.JsonModels
             };
         }
 
-        public static PostAnswerModel Map(PostAnswer post, IUrlHelper url)
+        public static PostsModel Map(Posts post, IUrlHelper url)
         {
-            return new PostAnswerModel
+            return new PostsModel
             {
                 Url = url.Link(Config.PostRoute, new { id = post.PostsId }),
-                //PostTypeId = post.PostTypeId,
-                //Body = post.Body,
-                //creationDate = post.creationDate,
-                //OwnerUserId = post.OwnerUserId,
-                //Score = post.Score,
-                Title = post.Title,
-                //Answers = post.Answers
+                PostTypeId = post.PostTypeId,
+                Body = post.Body,
+                creationDate = post.creationDate,
+                OwnerUserId = post.OwnerUserId,
+                Score = post.Score,
+                //Questions.Title = post.Question.Title                
 
             };
         }
 
-        public static PostAnswer Map(PostAnswerModel model, IUrlHelper url)
+        public static Posts Map(PostsModel model, IUrlHelper url)
         {
-            return new PostAnswer
+            return new Posts
             {
-                //PostTypeId = model.PostTypeId,
-                //Body = model.Body,
-                //creationDate = model.creationDate,
-                //OwnerUserId = model.OwnerUserId,
-                //Score = model.Score,
-                Title = model.Title//,
-                //Answers = model.Answers
+                PostTypeId = model.PostTypeId,
+                Body = model.Body,
+                creationDate = model.creationDate,
+                OwnerUserId = model.OwnerUserId,
+                Score = model.Score                
                 
             };
         }
@@ -144,5 +141,32 @@ namespace WebServiceLayer.JsonModels
                 TagsDesc = model.TagsDesc
             };
         }
+
+        public static SearchKeywordSPModel Map(SearchKeywordStoredProc sp, IUrlHelper url)
+        {
+            return new SearchKeywordSPModel
+            {
+               Url = url.Link(Config.SearchKeywordRoute, new { id = sp.Id }),
+               body = sp.body,
+               ParentId = sp.ParentId,
+               CommentText = sp.CommentText,
+               Score = sp.Score,
+               Title = sp.Title
+            };
+        }
+
+        public static SearchKeywordStoredProc Map(SearchKeywordSPModel model)
+        {
+            return new SearchKeywordStoredProc
+            {
+               
+                body = model.body,
+                ParentId = model.ParentId,
+                CommentText = model.CommentText,
+                Score = model.Score,
+                Title = model.Title
+            };
+        }
+
     }
 }

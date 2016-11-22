@@ -9,20 +9,21 @@ namespace DomainModel
 {
     public class Posts
     {
-        [Key]
+        //[Key]
         public int PostsId { get; set; }
         public int PostTypeId { get; set; }
         public DateTime creationDate { get; set; }
-        public int Score { get; set; }
+        public int? Score { get; set; }
         public string Body { get; set; }
+        //public List<Posts> Answers { get; set; }
 
         [ForeignKey("CombinedUsers")]
         public int OwnerUserId { get; set; }
 
-        
-        public virtual Questions Question { get; set; }
 
-        //public virtual CombinedUsers CombinedUsers { get; set; }
+        //public virtual Questions Question { get; set; }
+        [ForeignKey("OwnerUserId")]
+        public virtual CombinedUsers CombinedUsers { get; set; }
 
     }
 }

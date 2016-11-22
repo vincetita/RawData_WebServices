@@ -11,7 +11,7 @@ namespace MySqlDatabase
     {
         public DbSet<Comments> Comment { get; set; }
         public DbSet<Posts> Post { get; set; }
-        public DbSet<PostAnswer> PostAnswer { get; set; }
+        //public DbSet<PostAnswer> PostAnswer { get; set; }
         public DbSet<Answers> Answer { get; set; }
         public DbSet<Questions> Question { get; set; }
         public DbSet<History> History { get; set; }
@@ -39,12 +39,13 @@ namespace MySqlDatabase
 
             modelBuilder.Entity<Posts>().ToTable("posts");
             modelBuilder.Entity<Posts>().Property(p => p.PostsId).HasColumnName("id");
-            //modelBuilder.Entity<Posts>().HasKey(p => p.PostsId);
+            modelBuilder.Entity<Posts>().HasKey(p => p.PostsId);
             modelBuilder.Entity<Posts>().Property(p => p.PostTypeId).HasColumnName("posttypeid");
             modelBuilder.Entity<Posts>().Property(p => p.creationDate).HasColumnName("creationdate");
             modelBuilder.Entity<Posts>().Property(p => p.Score).HasColumnName("score");
             modelBuilder.Entity<Posts>().Property(p => p.Body).HasColumnName("body");
             modelBuilder.Entity<Posts>().Property(p => p.OwnerUserId).HasColumnName("owneruserid");
+            //modelBuilder.Entity<Posts>().HasKey(t => new { t.PostId, t.TagsDesc });
 
             modelBuilder.Entity<Questions>().ToTable("questions");
             modelBuilder.Entity<Questions>().Property(q => q.QuestionId).HasColumnName("questionid");
@@ -96,6 +97,10 @@ namespace MySqlDatabase
         {
             optionsBuilder.UseMySql("server=localhost;database=project_portfolio1_stackoverflow; uid=root; pwd=root");
             base.OnConfiguring(optionsBuilder);
+
+            //raw6
+            //wt-220.ruc.dk
+            //raw6
         }
     }
 }
