@@ -18,10 +18,12 @@ namespace WebServiceLayer.Controllers
         [HttpGet(Name = Config.SearchKeywordRoute)]
         public IActionResult Get(string search, int page = 0, int pageSize = Config.DefaultPageSize)
         {
-            var data = DataService.GetPostsbySearchKeyword(search)
-            .Select(h => ModelFactory.Map(h, Url));   
+            var data = DataService.GetPostsbySearchKeyword(search, page, pageSize)
+            .Select(h => ModelFactory.Map(h, Url));
 
             var total = DataService.GetTotalSearchKeywordResult(search);
+
+            //var total = data.Count();
 
             var result = new
             {
@@ -31,7 +33,7 @@ namespace WebServiceLayer.Controllers
                 data = data
             };
 
-            return Ok(data);
+            return Ok(result);
         }
     }
 }

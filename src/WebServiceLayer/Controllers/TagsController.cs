@@ -41,9 +41,11 @@ namespace WebServiceLayer.Controllers
             //[HttpGet("{id:int}/tags", Name = Config.TagsRoute)]
             public IActionResult Get(int id)
             {
-                var tags = DataService.GetTagsById(id);
+                var tags = DataService.GetTagsById(id)
+                .Select(c => ModelFactory.Map(c, Url));
+            
                 if (tags == null) return NotFound();
-                return Ok(ModelFactory.Map(tags, Url));
+                return Ok(tags);
             }
         }
 }

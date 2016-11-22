@@ -39,13 +39,13 @@ namespace WebServiceLayer.Controllers
         }
 
         [HttpGet("{id}", Name = Config.PostRoute)]
-        //[Route("{id}")]           // We can use route for routing also
+        
         public IActionResult Get(int id)
         {
-            var posts = DataService.GetPost(id);
-            //var postanswer = DataService.GetAnswersForSpecificPost();
+            var posts = DataService.GetAnswersForSpecificPost(id)
+                .Select(p => ModelFactory.Map(p, Url));
             if (posts == null) return NotFound();
-            return Ok(ModelFactory.Map(posts, Url));
+            return Ok(posts);
         }
     }
 }

@@ -57,13 +57,13 @@ namespace WebServiceLayer.JsonModels
                 Body = post.Body,
                 creationDate = post.creationDate,
                 OwnerUserId = post.OwnerUserId,
-                Score = post.Score,
+                Score = post.Score
                 //Questions.Title = post.Question.Title                
 
             };
         }
 
-        public static Posts Map(PostsModel model, IUrlHelper url)
+        public static Posts Map(PostsModel model)
         {
             return new Posts
             {
@@ -71,11 +71,10 @@ namespace WebServiceLayer.JsonModels
                 Body = model.Body,
                 creationDate = model.creationDate,
                 OwnerUserId = model.OwnerUserId,
-                Score = model.Score                
+                Score = model.Score      
                 
             };
         }
-
 
         public static HistoryModel Map(History history, IUrlHelper url)
         {
@@ -101,7 +100,7 @@ namespace WebServiceLayer.JsonModels
         {
             return new CombinedUsersModel
             {
-                Url = url.Link(Config.CombinedUsersRoute, new { id = user.CombineUserId }),
+                Url = url.Link(Config.CombinedUserRoute, new { id = user.CombineUserId }),
                 UserName = user.UserName,
                 UserCreationDate = user.UserCreationDate,
                 UserLocation = user.UserLocation,
@@ -127,7 +126,7 @@ namespace WebServiceLayer.JsonModels
         {
             return new TagsModel
             {
-                Url = url.Link(Config.TagsRoute, new { id = tag.PostId }),
+                Url = url.Link(Config.TagRoute, new { id = tag.PostId }),
                 TagsDesc = tag.TagsDesc
             };
 

@@ -27,8 +27,8 @@ namespace WebServiceLayer.Controllers
             var result = new
             {
                 Total = total,
-                Prev = GetPrevUrl(Config.PostsRoute, Url, page, pageSize),
-                Next = GetNextUrl(Config.PostsRoute, Url, page, pageSize, total),
+                Prev = GetPrevUrl(Config.AnswersRoute, Url, page, pageSize),
+                Next = GetNextUrl(Config.AnswersRoute, Url, page, pageSize, total),
                 data = data
             };
 

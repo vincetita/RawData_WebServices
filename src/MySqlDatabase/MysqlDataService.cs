@@ -35,20 +35,12 @@ namespace MySqlDatabase
         {
             using (var db = new MysqlDataContext())
             {
-                // Note : One way to update history
-                //var dbhistory = db.History.FirstOrDefault(h => h.HistoryId == history.HistoryId);
-                //if (dbhistory == null) return false;
-                //dbhistory.Keyword = history.Keyword;
-                //dbhistory.SearchDate = history.SearchDate;
-                //db.Add(history);
-                //return db.SaveChanges() > 0;
-
-                // Another way by using attach of entity framework
+                
                 try
                 {
-                    db.Attach(history);                 // Attach history as part of domain model to the entity framework 
-                    db.Entry(history).State = EntityState.Modified;     // Entity framework will do all the mapping and change for the stateof the object
-                    return db.SaveChanges() > 0;        // To give information on number of row affected after update
+                    db.Attach(history);                 
+                    db.Entry(history).State = EntityState.Modified;     
+                    return db.SaveChanges() > 0;        
                 }
 
                 catch (DbUpdateConcurrencyException)
@@ -172,80 +164,28 @@ namespace MySqlDatabase
             }
         }
 
-        //public Posts GetPostWithAnswers(int id)
-        //{
-        //    using (var db = new MysqlDataContext())
-        //    {
-        //        var joinanswers = (from p in db.Post
-        //                          join a in db.Answer
-        //                          on p.PostsId equals a.ParentId
-        //                          where p.PostsId == id
-        //                          select p.Body).FirstOrDefault();
-
-        //        //var answerlist = from al in db.Post
-        //        //                  where al.PostsId == id
-        //        //                  select al.Body;
-
-        //        //var result = (from po in db.Post
-        //        //              select new Posts
-        //        //              {
-        //        //                  PostsId = po.PostsId,
-        //        //                  Body = po.Body,
-        //        //                  PostTypeId = po.PostTypeId,
-        //        //                  creationDate = po.creationDate,
-        //        //                  Score = po.Score,
-        //        //                  OwnerUserId = po.OwnerUserId,
-        //        //                  Answers = answerlist
-        //        //                  //OwnerUserId = po.CombinedUsers.UserName
-        //        //              }).FirstOrDefault(); 
-
-        //        //var result = (from p in db.Post
-        //        //              join a in answers
-        //        //              on p.PostsId equals a.
-        //        //              where answers.Contains()
-        //        //              select new Posts
-        //        //              {
-        //        //                  PostsId = p.PostsId,
-        //        //                  //Title = p.Question.Title,
-        //        //                  PostTypeId = p.PostTypeId,
-        //        //                  Body = p.Body,
-        //        //                  creationDate = p.creationDate,
-        //        //                  Score = p.Score//,
-        //        //                  //Answers = post
-        //        //              }).FirstOrDefault();
-        //        //result.Answers = GetAnswers(result.PostsId);
-
-
-        //        //var answers = from a in db.Answer
-        //        //              where a.ParentId == id
-        //        //              select a.PostId;
-
-        //        //var post = (from p in db.Post
-        //        //            where answers.Contains(p.PostsId)
-        //        //            select p.Body).ToList();
-
-        //        //List<Answers> la = new List<Answers>();
-        //        //foreach (var b in la)
-        //        //{
-        //        //    la.Add(b);
-
-        //        //}
-        //        return joinanswers;
-        //    }
-        //}
-
+        
         public IList<Posts> GetAnswersForSpecificPost(int id)
         {
             using (var db = new MysqlDataContext())
             {
-                var answers = (db.Post
-                            .Where(b => b.PostTypeId == 2 && b.PostsId == id)
-                            .OrderBy(p => p.creationDate)).ToList();
-                return answers;
+                var answerid = from a in db.Answer
+                              where a.ParentId == id
+                              select a.PostId;
+
+                var post = (from p in db.Post
+                            where answerid.Contains(p.PostsId)
+                            select new Posts{
+                                PostsId = p.PostsId,
+                                Body = p.Body,
+                                creationDate = p.creationDate,                                
+                                Score = p.Score,
+                                PostTypeId = p.PostTypeId,
+                                OwnerUserId = p.OwnerUserId
+                                }).ToList();                
+                return post;
             }
         }
-
-
 
         public int GetTotalComments()
         {
@@ -264,19 +204,7 @@ namespace MySqlDatabase
                 return count;
             }
         }
-
-        
-
-        //public PostAnswer GetPostAnswers(int postid)
-        //{
-        //    using (var db = new MysqlDataContext())
-        //    {
-        //        return db.Post.Where(p => p.ParentId == postid)
-        //    }
-        //}
-
-        
-
+                
         public IList<OwnComments> GetOwnComments(int page, int pageSize)
         {
             using (var db = new MysqlDataContext())
@@ -361,12 +289,13 @@ namespace MySqlDatabase
             }
         }
 
-        public Tags GetTagsById(int id)
+        public IList<Tags> GetTagsById(int id)
         {
             using (var db = new MysqlDataContext())
             {
-                return db.Tags.FirstOrDefault(c => c.PostId == id);
 
+                return db.Tags.Where(c => c.PostId == id).ToList();
+                
             }
         }
 
@@ -408,7 +337,7 @@ namespace MySqlDatabase
             }
         }
 
-        public IList<SearchKeywordStoredProc> GetPostsbySearchKeyword(string searchword)
+        public IList<SearchKeywordStoredProc> GetPostsbySearchKeyword(string searchword, int page, int pageSize)
         {
             
             using (var db = new MysqlDataContext())
@@ -430,8 +359,9 @@ namespace MySqlDatabase
             using (var db = new MysqlDataContext())
             {
                 var cmds = db.SearchKeyordStoredProc.FromSql("call search_keyword({0})", search);
-                var result = new List<SearchKeywordStoredProc>();
-                return result.Count();
+                var list = new List<SearchKeywordStoredProc>();
+                var result = list.Count();
+                return result;
             }
         }
     }
