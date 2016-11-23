@@ -122,8 +122,6 @@ namespace MySqlDatabase
             using (var db = new MysqlDataContext())
             {
                 var result = db.Post.FirstOrDefault(p => p.PostsId == id);
-
-
                 return result;
             }
         }

@@ -14,9 +14,8 @@ namespace WebServiceLayer.Controllers
     [Route("api/posts")]
     public class PostsController : BaseController
     {
-        public PostsController(IDataService dataService) : base(dataService)
+        public PostsController (IDataService dataService) : base(dataService)
         {
-
         }
 
         [HttpGet(Name = Config.PostsRoute)]
