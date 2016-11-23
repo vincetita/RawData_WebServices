@@ -364,7 +364,122 @@ namespace MySqlDatabase
                 return result;
             }
         }
+
+        public IList<RankingStoredProc> GetWordsbyRanking(string rankword, int page, int pageSize)
+        {
+            using (var db = new MysqlDataContext())
+            {
+                var cmds = db.RankStoredProc.FromSql("call ranking({0})", rankword);
+                var result = new List<RankingStoredProc>();
+
+                foreach (var item in cmds)
+                {
+                    result.Add(item);
+                }
+                return result;
+
+            }
+        }
+
+        public int GetTotalRankWord(string rankword)
+        {
+            using (var db = new MysqlDataContext())
+            {
+                var cmds = db.RankStoredProc.FromSql("call ranking({0})", rankword);
+                var list = new List<RankingStoredProc>();                
+                var result = list.Count();
+                return result;
+            }
+        }
+
+        public IList<Questions> GetQuestions(int page, int pageSize)
+        {
+            using (var db = new MysqlDataContext())
+            {
+                var questions = db.Question
+                         .Skip(page * pageSize)
+                         .Take(pageSize)
+                         .ToList();
+                return questions;
+            }
+        }
+
+        public int GetTotalQuestions()
+        {
+            using (var db = new MysqlDataContext())
+            {
+                return db.Question.Count();
+            }
+        }
+
+        public Questions GetQuestionbyId(int id)
+        {
+            using (var db = new MysqlDataContext())
+            {
+                return db.Question.FirstOrDefault(q => q.QuestionId == id);                
+            }
+        }
+
+        public IList<LinkPosts> GetLinkToPost(int page, int pageSize)
+        {
+            using (var db = new MysqlDataContext())
+            {
+                return db.LinkPost
+                    .OrderBy(c => c.PostId)
+                    .Skip(page * pageSize)
+                    .Take(pageSize)
+                    .ToList();
+            }
+        }
+
+        public int GetTotalLinkPosts()
+        {
+            using (var db = new MysqlDataContext())
+            {
+                return db.LinkPost.Count();
+            }
+        }
+
+        public IList<Posts> GetAllMarkedPosts(int page, int pageSize)
+        {
+            using (var db = new MysqlDataContext())
+            {
+                var markedid = from m in db.MarkPost                               
+                               select m.PostId;
+
+                var post = (from p in db.Post
+                            where markedid.Contains(p.PostsId)
+                            select new Posts
+                            {
+                                PostsId = p.PostsId,
+                                Body = p.Body,
+                                creationDate = p.creationDate,
+                                Score = p.Score,
+                                PostTypeId = p.PostTypeId,
+                                OwnerUserId = p.OwnerUserId
+                            }).ToList();
+                
+                var result = post
+                            .OrderBy(m => m.creationDate)
+                            .Skip(page * pageSize)
+                            .Take(pageSize)
+                            .ToList();
+
+                return result;
+            }
+        }
+
+        public int GetNumberOfMarkedPosts()
+        {            
+                using (var db = new MysqlDataContext())
+                {
+                    return db.MarkPost.Count();
+                }
+            
+        }       
+        
     }
 }
+
 
 

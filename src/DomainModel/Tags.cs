@@ -8,10 +8,8 @@ using System.Threading.Tasks;
 namespace DomainModel
 {
     public class Tags
-    {
-        
-        public int PostId { get; set; }
-        
+    {        
+        public int PostId { get; set; }        
         public string TagsDesc { get; set; }
     }
 }

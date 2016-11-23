@@ -25,10 +25,7 @@ namespace WebServiceLayer
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
-            //_mapperConfiguration = new MapperConfiguration(cfg =>
-            //{
-            //    cfg.AddProfile(new AutoMapperClass());
-            //});
+            
 
             if (env.IsEnvironment("Development"))
             {
@@ -51,7 +48,7 @@ namespace WebServiceLayer
             services.AddMvc();
             services.AddSingleton<IDataService, MysqlDataService>();
 
-            //services.AddSingleton<IMapper>(sp => _mapperConfiguration.CreateMapper());
+            
 
         }
 

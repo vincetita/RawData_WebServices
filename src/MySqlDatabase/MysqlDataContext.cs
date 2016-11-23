@@ -19,12 +19,16 @@ namespace MySqlDatabase
         public DbSet<Tags> Tags { get; set; }
         public DbSet<CombinedUsers> CombineUsers { get; set; }
         public DbSet<SearchKeywordStoredProc> SearchKeyordStoredProc { get; set; }
+        public DbSet<RankingStoredProc> RankStoredProc { get; set; }
+        public DbSet<LinkPosts> LinkPost { get; set; }
+        public DbSet<MarkedPosts> MarkPost { get; set; }
 
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<SearchKeywordStoredProc>().HasKey(t => t.Id);
+            modelBuilder.Entity<RankingStoredProc>().HasKey(p => p.postsid);
 
             modelBuilder.Entity<Comments>().ToTable("comments");
             modelBuilder.Entity<Comments>().Property(t => t.CommentId).HasColumnName("commentid");
@@ -88,10 +92,21 @@ namespace MySqlDatabase
             modelBuilder.Entity<CombinedUsers>().Property(t => t.UserLocation).HasColumnName("Cuserlocation");
             modelBuilder.Entity<CombinedUsers>().Property(t => t.UserCreationDate).HasColumnName("Cusercreationdate");
 
+            modelBuilder.Entity<LinkPosts>().ToTable("linkposts");
+            modelBuilder.Entity<LinkPosts>().HasKey(l => new { l.PostId, l.LinkPostId });
+            modelBuilder.Entity<LinkPosts>().Property(l => l.PostId).HasColumnName("postid");
+            modelBuilder.Entity<LinkPosts>().Property(l => l.LinkPostId).HasColumnName("linkpostid");
+
+            modelBuilder.Entity<MarkedPosts>().ToTable("markedposts");
+            modelBuilder.Entity<MarkedPosts>().HasKey(m => new { m.MarkedId});
+            modelBuilder.Entity<MarkedPosts>().Property(m => m.MarkedId).HasColumnName("markedid");
+            modelBuilder.Entity<MarkedPosts>().Property(m => m.PostId).HasColumnName("postid");
+
+            base.OnModelCreating(modelBuilder);
+
             base.OnModelCreating(modelBuilder);
         }
-
-
+        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

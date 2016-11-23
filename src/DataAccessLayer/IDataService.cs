@@ -25,6 +25,7 @@ namespace DataAccessLayer
         void AddHistory(History history);
         bool UpdateHistory(History history);        
         bool DeleteHistory(int id);
+        
 
         // Own Comments (For CRUD on our ownComments table)
         IList<OwnComments> GetOwnComments(int page, int pageSize);
@@ -45,9 +46,13 @@ namespace DataAccessLayer
         IList<Tags> GetTagsById(int id);
         int GetNumberOfTags();
 
-        // Stored Procedures
+        // Stored Procedure SearchKeyword
         IList<SearchKeywordStoredProc> GetPostsbySearchKeyword(string search, int page, int pageSize);
         int GetTotalSearchKeywordResult(string search);
+
+        // Stored Procedure RankWord
+        IList<RankingStoredProc> GetWordsbyRanking(string search, int page, int pageSize);
+        int GetTotalRankWord(string rankword);
 
         // Answers
         IList<Posts> GetAnswersList(int page, int pageSize);
@@ -55,6 +60,19 @@ namespace DataAccessLayer
        
         // Returning anwers list for specific post
         IList<Posts> GetAnswersForSpecificPost(int id);
-        
+
+        // Questions
+        IList<Questions> GetQuestions(int page, int pageSize);
+        int GetTotalQuestions();
+        Questions GetQuestionbyId(int id);
+
+        // LinkPosts
+        IList<LinkPosts> GetLinkToPost(int page, int pageSize);
+        int GetTotalLinkPosts();
+
+        // MarkPosts
+        IList<Posts> GetAllMarkedPosts(int page, int pageSize);
+        int GetNumberOfMarkedPosts();        
+
     }
 }

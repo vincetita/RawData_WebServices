@@ -1,22 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DomainModel
+namespace WebServiceLayer.JsonModels
 {
-    public class Questions
+    public class QuestionModel
     {
-        [Key]
-        public int QuestionId { get; set; }
-
-        [ForeignKey("Posts")]
+        public string Url { get; set; }
         public int PostId { get; set; }
         public string Title { get; set; }
         public int? AcceptedAnswerId { get; set; }
         public DateTime? ClosedDate { get; set; }
-        
     }
 }

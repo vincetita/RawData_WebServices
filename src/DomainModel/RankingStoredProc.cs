@@ -7,14 +7,15 @@ using System.Threading.Tasks;
 
 namespace DomainModel
 {
-    public class Answers
+    public class RankingStoredProc
     {
         [Key]
-        public int AnswerId { get; set; }        
-        public int PostId { get; set; }
-        public int ParentId { get; set; }
-        [ForeignKey("PostsId")]
-        public virtual Posts Posts { get; set; }
-
+        [Column("posts.id")]
+        public int postsid { get; set; }
+        [Column("Rank")]
+        public decimal? Rank { get; set; }
+        [Column("body")]
+        public string body { get; set; }
+        
     }
 }

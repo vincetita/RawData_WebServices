@@ -23,8 +23,6 @@ namespace WebServiceLayer.Controllers
 
             var total = DataService.GetTotalSearchKeywordResult(search);
 
-            //var total = data.Count();
-
             var result = new
             {
                 Total = total,

@@ -8,8 +8,9 @@ namespace DomainModel
 {
     public class LinkPosts
     {
-        [Key]
+        //[Key]
         public int PostId { get; set; }
         public int LinkPostId { get; set; }
+        public virtual Posts Post { get; set; }
     }
 }

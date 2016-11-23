@@ -57,8 +57,7 @@ namespace WebServiceLayer.JsonModels
                 Body = post.Body,
                 creationDate = post.creationDate,
                 OwnerUserId = post.OwnerUserId,
-                Score = post.Score
-                //Questions.Title = post.Question.Title                
+                Score = post.Score                     
 
             };
         }
@@ -106,8 +105,6 @@ namespace WebServiceLayer.JsonModels
                 UserLocation = user.UserLocation,
                 UserAge = user.UserAge
             };
-
-
         }
 
         public static CombinedUsers Map(CombinedUsersModel model)
@@ -129,8 +126,6 @@ namespace WebServiceLayer.JsonModels
                 Url = url.Link(Config.TagRoute, new { id = tag.PostId }),
                 TagsDesc = tag.TagsDesc
             };
-
-
         }
 
         public static Tags Map(TagsModel model)
@@ -167,5 +162,47 @@ namespace WebServiceLayer.JsonModels
             };
         }
 
+        public static RankingSPModel Map(RankingStoredProc rsp, IUrlHelper url)
+        {
+            return new RankingSPModel
+            {
+                Url = url.Link(Config.RankWordRoute, new { id = rsp.postsid }),
+                body = rsp.body,
+                Rank = rsp.Rank                
+            };
+        }
+
+        public static RankingStoredProc Map(RankingSPModel model)
+        {
+            return new RankingStoredProc
+            {
+             body = model.body,
+             Rank = model.Rank   
+            };
+        }
+
+        public static QuestionModel Map(Questions questions, IUrlHelper url)
+        {
+            return new QuestionModel
+            {   
+                Url = url.Link(Config.QuestionRoute, new { id = questions.QuestionId }),
+                PostId = questions.PostId,
+                Title = questions.Title,
+                AcceptedAnswerId = questions.AcceptedAnswerId,
+                ClosedDate = questions.ClosedDate   
+            };
+        }
+
+        public static Questions Map(QuestionModel model)
+        {
+            return new Questions
+            {
+                PostId = model.PostId,
+                Title = model.Title,
+                ClosedDate = model.ClosedDate,
+                AcceptedAnswerId = model.AcceptedAnswerId               
+
+            };
+        }
     }
 }
