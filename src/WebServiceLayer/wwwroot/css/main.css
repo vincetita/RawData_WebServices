@@ -1,0 +1,24 @@
+﻿
+.logo-img{
+    max-width: 100%;
+    height: auto; 
+    display: block;
+    height:25%;
+    width:60%;
+}
+
+.img-responsive{
+    max-width: 100%;
+    height: auto; 
+    display: block;
+}
+
+.search-form{
+    padding-top:15px;
+    width:100%;
+}
+
+.search-input{
+    width:100%!important;
+}
+
