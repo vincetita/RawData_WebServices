@@ -61,7 +61,7 @@ namespace WebServiceLayer
             app.UseApplicationInsightsRequestTelemetry();
 
             app.UseApplicationInsightsExceptionTelemetry();
-
+            app.UseFileServer();
             app.UseMvc();
         }
     }

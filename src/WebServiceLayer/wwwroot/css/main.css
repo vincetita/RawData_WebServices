@@ -22,3 +22,12 @@
     width:100%!important;
 }
 
+textarea{
+    width:100%;
+}
+
+hr{
+    border-color:red;
+    color:red;
+}
+

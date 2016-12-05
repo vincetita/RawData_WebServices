@@ -111,7 +111,7 @@ namespace MySqlDatabase
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // Connection string For local database
-            optionsBuilder.UseMySql("server=localhost;database=project_portfolio1_stackoverflow; uid=root; pwd=root");
+            optionsBuilder.UseMySql("server=localhost;database=database3; uid=root; pwd=12345Mail");
 
             // For testing on wt-220.ruc.dk server
             //optionsBuilder.UseMySql("server=wt-220.ruc.dk;database=raw6; uid=raw6; pwd=raw6");
