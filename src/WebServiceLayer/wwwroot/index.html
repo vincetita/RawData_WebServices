@@ -4,13 +4,43 @@
 <head>
     <meta charset="utf-8" />
 
-    <title>SPA index</title>
-    <link href="js/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <title>SOVA application index</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!--<link href="js/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />-->
     <link href="css/main.css" rel="stylesheet" />   
 </head>
 
 <body class="container">
-
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Search Text</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>2016</td>
+                <td>Computer</td>
+                <td>
+                    <button class="btn btn-sm btn-danger">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>2017</td>
+                <td>Java</td>
+                <td>
+                    <button class="btn btn-sm btn-danger">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <menu-nav></menu-nav>
 
     <script data-main="js/app/main.js" src="js/lib/requirejs/require.js"></script>
