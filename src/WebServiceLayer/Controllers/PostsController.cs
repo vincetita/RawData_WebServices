@@ -29,6 +29,8 @@ namespace WebServiceLayer.Controllers
             var result = new
             {
                 Total = total,
+                Url = Url.Link(Config.PostsRoute, new { page, pageSize }),
+               
                 Prev = GetPrevUrl(Config.PostsRoute, Url, page, pageSize),
                 Next = GetNextUrl(Config.PostsRoute, Url, page, pageSize, total),
                 data = data

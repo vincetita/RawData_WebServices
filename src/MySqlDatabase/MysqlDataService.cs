@@ -357,8 +357,8 @@ namespace MySqlDatabase
             using (var db = new MysqlDataContext())
             {
                 var cmds = db.SearchKeyordStoredProc.FromSql("call search_keyword({0})", search);
-                var list = new List<SearchKeywordStoredProc>();
-                var result = list.Count();
+                //var list = new List<SearchKeywordStoredProc>();
+                var result = cmds.Count();
                 return result;
             }
         }
@@ -367,7 +367,9 @@ namespace MySqlDatabase
         {
             using (var db = new MysqlDataContext())
             {
-                var cmds = db.RankStoredProc.FromSql("call ranking({0})", rankword);
+                var cmds = db.RankStoredProc.FromSql("call ranking({0})", rankword)
+                .Skip(page * pageSize)
+                    .Take(pageSize);
                 var result = new List<RankingStoredProc>();
 
                 foreach (var item in cmds)
@@ -384,8 +386,8 @@ namespace MySqlDatabase
             using (var db = new MysqlDataContext())
             {
                 var cmds = db.RankStoredProc.FromSql("call ranking({0})", rankword);
-                var list = new List<RankingStoredProc>();                
-                var result = list.Count();
+                //var list = new List<RankingStoredProc>();                
+                var result = cmds.Count();
                 return result;
             }
         }

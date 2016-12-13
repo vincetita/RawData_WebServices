@@ -168,7 +168,8 @@ namespace WebServiceLayer.JsonModels
             {
                 Url = url.Link(Config.RankWordRoute, new { id = rsp.postsid }),
                 body = rsp.body,
-                Rank = rsp.Rank                
+                Rank = rsp.Rank,
+                title = rsp.title             
             };
         }
 
@@ -177,7 +178,8 @@ namespace WebServiceLayer.JsonModels
             return new RankingStoredProc
             {
              body = model.body,
-             Rank = model.Rank   
+             Rank = model.Rank,
+             title = model.title   
             };
         }
 
