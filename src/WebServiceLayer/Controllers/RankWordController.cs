@@ -22,12 +22,14 @@ namespace WebServiceLayer.Controllers
             .Select(h => ModelFactory.Map(h, Url));
 
             var total = DataService.GetTotalRankWord(rankword);
-
+            //http://localhost:5489/api/rankword?rankword=map&page=1&pageSize=10
+            //"http://localhost:5489/api/rankword?keyword=map&page=1&pageSize=10",
+            //"http://localhost:5489/api/rankword?rankword=map&page=1&pageSize=10",
             var result = new
             {
                 Total = total,
-                Prev = GetPrevUrl(Config.RankWordRoute, Url, page, pageSize),
-                Next = GetNextUrl(Config.RankWordRoute, Url, page, pageSize, total),
+                Prev = GetPrevUrlRankWord(Config.RankWordRoute, Url, rankword,  page, pageSize),
+                Next = GetNextUrlRankWord(Config.RankWordRoute, Url, rankword, page, pageSize, total),
                 data = data
             };
 

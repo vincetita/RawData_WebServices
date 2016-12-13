@@ -1,5 +1,37 @@
 ﻿<div>
-    <h3><a href="#">Title 1 </a></h3>
+
+    <script src="../../../lib/jquery/dist/jquery.js"></script>
+    
+    
+    <button id="btn" >Click this button to show the lists of posts !</button>
+    <div id="output">Lists of Posts</div>
+    <div id="totalPosts"><span data-bind="text: total"></span></div>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Score</th>
+                <th>Url</th>
+                <th>CreationDate</th>
+            </tr>
+        </thead>
+        <!--instead of using data().body we can use data-bind="with: data" also-->
+        <tbody data-bind="foreach: posts" id="tbodySearchPosts">
+            <tr>
+                <!--.ToString().Length>300?-->
+                <td data-bind="html: body"></td>
+                <td data-bind="text: score"></td>
+                <td data-bind="text: url"></td>
+                <td data-bind="text: creationDate"></td>
+
+
+            </tr>
+        </tbody>
+    </table>
+    
+    <script src="//ajax.aspnetcdn.com/ajax/knockout/knockout-3.3.0.js"></script>
+    <script src="posts.js"></script>
+    <!--<h3><a href="#">Title 1 </a></h3>
     <p> Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 </div>
 <div>
@@ -8,7 +40,7 @@
 </div>
 <div>
     <h3><a href="#">Title 3 </a></h3>
-    <p> Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+    <p> Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>-->
 </div>
 
 <nav aria-label="Page navigation">
