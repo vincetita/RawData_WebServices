@@ -1,20 +1,39 @@
-﻿
+﻿define(['jquery', 'config'], function ($, config) {
 
-var dataservice = {
-     search : function(searchString, callback) {
-         $.getJSON("http://localhost:5489/api/searchkeyword?search=" + searchString, callback);
-           }
-}
+    var getSearchHistory = function (callback) {
+        var url = "api/history";
+        $.getJSON(url, function (data) {
+            callback(data);
+        });
+    };
 
-$("#btn").on('click', function () {
-    dataservice.search($("#input").val(), function (data) {
-        $("#output").text(JSON.stringify(
-            data.items.map(function (e) {
-                return {
-                    login: e.login,
-                    id: e.id
-                }
-            })
-            ));
-    });
+    var getPaginationData = function (url, callback) {
+        $.getJSON(url,
+            function (data) {
+                callback(data);
+            });
+    };
+
+    var getAnnotation = function (callback) {
+        var url = "api/owncomments";
+        $.getJSON(url,
+            function (data) {
+                callback(data);
+            });
+    };
+
+    var deleteHistory = function (url) {
+        $.ajax({
+            type: "DELETE",
+            url: url
+        });
+    };
+
+    return {
+        getSearchHistory,
+        getAnnotation,
+        getPaginationData,
+        deleteHistory
+    };
 });
+

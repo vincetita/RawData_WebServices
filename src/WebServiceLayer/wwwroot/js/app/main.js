@@ -33,13 +33,13 @@
             template: { require: 'text!app/components/post/post.html' }
         });
 
-        ko.components.register("annotation-owncomments", {
+        ko.components.register("annotation", {
             viewModel: { require: 'app/components/annotation/annotationViewModel' },
             template: { require: 'text!app/components/annotation/annotation.html' }
         });
 
-        
-        ko.components.register("history-search", {
+
+        ko.components.register("search-history", {
             viewModel: { require: 'app/components/history/historyViewModel' },
             template: { require: 'text!app/components/history/history.html' }
         });

@@ -1,22 +1,36 @@
-﻿
-var serviceRoot = 'http://localhost:55555';
+﻿define(['knockout', 'dataservice', 'postman', 'config'],
+    function (ko, dataService, postman, config) {
+        return function () {
+            var historyList = ko.observableArray([]);
+            var prev = ko.observable();
+            var next = ko.observable();
 
-var HistoryViewM = function HistoryViewModel() {
-                var self = this;
-                self.history = ko.observableArray();
+            var callback = function (data) {
+                historyList(data.data);
+                prev(data.prev);
+                next(data.next);
+            }
 
-                var baseUri = '@ViewBag.ApiUrl';
-                $.getJSON(baseUri, self.products);
+            dataService.getSearchHistory(callback);
+            var prevLink = function () {
+                dataService.getPaginationData(prev(), callback);
+            }
 
-                self.create = function (formElement) {
-                    // If the form data is valid, post the serialized form data to the web API.
-                    $(formElement).validate();
-                    if ($(formElement).valid()) {
-                        $.post(baseUri, $(formElement).serialize(), null, "json")
-                            .done(function (o) {
-                                // Add the new product to the view-model.
-                                self.products.push(o);
-                            });
-                    }
-    }
-}
+            var nextLink = function () {
+                dataService.getPaginationData(next(), callback);
+            }
+
+            var deleteSearchHistory = function (data) {
+                dataService.deleteHistory(data.url);
+                historyList.remove();
+            }
+
+            return {
+                historyList: historyList,
+                prevLink: prevLink,
+                nextLink: nextLink,
+                deleteSearchHistory: deleteSearchHistory
+            };
+        }
+    });
+
