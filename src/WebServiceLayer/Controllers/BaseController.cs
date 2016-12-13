@@ -30,6 +30,19 @@ namespace WebServiceLayer.Controllers
 
         }
 
+        protected string GetPrevUrlRankWord(string route, IUrlHelper url, string rankword, int page, int pageSize)
+        {
+            if (IsFirstPage(page)) return null;
+            return url.Link(route, new { rankword, page = page - 1, pageSize });
+
+        }
+
+        protected string GetNextUrlRankWord(string route, IUrlHelper url, string rankword, int page, int pageSize, int total)
+        {
+            if (IsLastPage(page, pageSize, total)) return null;
+            return url.Link(route, new { rankword, page = page + 1, pageSize });
+
+        }
         protected static bool IsFirstPage(int page)
         {
             return page == 0;
