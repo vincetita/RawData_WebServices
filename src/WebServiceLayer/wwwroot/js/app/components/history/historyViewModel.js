@@ -6,6 +6,7 @@
             var next = ko.observable();
 
             var callback = function (data) {
+                //console.log(data);
                 historyList(data.data);
                 prev(data.prev);
                 next(data.next);

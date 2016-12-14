@@ -68,7 +68,7 @@ namespace MySqlDatabase
             modelBuilder.Entity<Answers>().Property(a => a.ParentId).HasColumnName("parentid");
 
             modelBuilder.Entity<History>().ToTable("history");
-            //modelBuilder.Entity<History>().HasKey(h => h.HistoryId);
+            modelBuilder.Entity<History>().HasKey(h => h.HistoryId);
             modelBuilder.Entity<History>().Property(h => h.HistoryId).HasColumnName("id");
             modelBuilder.Entity<History>().Property(h => h.Keyword).HasColumnName("keyword");
             modelBuilder.Entity<History>().Property(h => h.SearchDate).HasColumnName("searchdate");
@@ -111,8 +111,8 @@ namespace MySqlDatabase
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // Connection string For local database
-           // optionsBuilder.UseMySql("server=localhost;database=raw6; uid=root; pwd=root");
-            optionsBuilder.UseMySql("server=localhost;database=database3; uid=root; pwd=12345Mail");
+            optionsBuilder.UseMySql("server=localhost;database=raw6; uid=root; pwd=root");
+            //optionsBuilder.UseMySql("server=localhost;database=database3; uid=root; pwd=12345Mail");
 
             // For testing on wt-220.ruc.dk server
             //optionsBuilder.UseMySql("server=wt-220.ruc.dk;database=raw6; uid=raw6; pwd=raw6");

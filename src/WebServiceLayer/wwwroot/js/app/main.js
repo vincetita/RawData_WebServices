@@ -37,8 +37,8 @@
         });
 
         ko.components.register("annotation-owncomments", {
-           viewModel: { require: 'app/components/annotation/annotationViewModel' }
-        //    template: { require: 'text!app/components/annotation/annotation.html' }
+           viewModel: { require: 'app/components/annotation/annotationViewModel' },
+            template: { require: 'text!app/components/annotation/annotation.html' }
         });
 
         

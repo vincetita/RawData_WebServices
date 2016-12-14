@@ -12,8 +12,7 @@ define(['jquery', 'config', 'knockout'], function ($, config, ko) {
         });
     };
 
-    var getPaginationData = function (callback) {
-        var url = config.serverApi.historyUrl;
+    var getPaginationData = function (url, callback) {
         $.getJSON(url,
             function (data) {
                 callback(data);
@@ -28,13 +27,13 @@ define(['jquery', 'config', 'knockout'], function ($, config, ko) {
             });
     };
 
-    //var deleteHistory = function (url) {
+    var deleteHistory = function (url) {
 
-    //    $.ajax({
-    //        type: "DELETE",
-    //        url: url
-    //    });
-    //};
+        $.ajax({
+            type: "DELETE",
+            url: url
+        });
+    };
 
     var SearchpostsRankword = function (url, searchword, callback) {
         url = config.serverApi.searchUrl + searchword;
@@ -55,7 +54,7 @@ define(['jquery', 'config', 'knockout'], function ($, config, ko) {
         getSearchHistory,
         getAnnotation,
         getPaginationData,
-        //deleteHistory,
+        deleteHistory,
         SearchpostsRankword,
         postsLists
 
