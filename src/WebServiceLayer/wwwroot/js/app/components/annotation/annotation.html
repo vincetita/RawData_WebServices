@@ -1,13 +1,29 @@
-﻿<div class="list-group">
-    <h3 class="list-group-item-heading">Title</h3>
-    <span class="badge alert-danger">Score: 14</span>
-    <p>Body: Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-
-</div><hr style="border-color:red; color:red" />
-<div>
+﻿<div>
     <h4 class="text-danger">Annotation:  </h4>
-    <p class="list-group-item-text">Annotation1 </p>
-    <p class="list-group-item-text">Annotation2 </p>
-    <p class="list-group-item-text">Annotation3 </p>
-    <p class="list-group-item-text">Annotation4 </p>
+    <ul data-bind="foreach: annotationList" style="list-style: none;">
+        <li>
+            <a href="#" class="list-group-item-heading" data-bind="click: postId" style="border-color: red; color: red">
+                <h4 data-bind="text: postId"></h4>
+            </a>
+        </li>
+
+        <li class="list-group-item-text" data-bind="text: commentText"></li>
+        <li class="badge alert-danger"> Score: <span data-bind="text: commentScore"></span></li>
+        <li class="badge alert-danger"> Created Date: <span data-bind="text: commentCreated"></span></li>
+        <hr style="border-color:red; color:red" />
+    </ul>
 </div>
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li>
+            <a href="#" aria-label="Previous" data-bind="click: prevLink">
+                <span aria-hidden="true">&laquo; Previous</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" aria-label="Next" data-bind="click: nextLink">
+                <span aria-hidden="true">&raquo; Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>
