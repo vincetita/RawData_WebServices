@@ -9,24 +9,24 @@
                 annotationList(data.data);
                 prev(data.prev);
                 next(data.next);
-            }
+            };
 
             dataService.getAnnotation(callback);
 
 
             var prevLink = function () {
                 dataService.getPaginationData(prev(), callback);
-            }
+            };
 
             var nextLink = function () {
                 dataService.getPaginationData(next(), callback);
-            }
+            };
 
             return {
                 annotationList: annotationList,
                 prevLink: prevLink,
                 nextLink: nextLink
             };
-        }
+        };
     });
 

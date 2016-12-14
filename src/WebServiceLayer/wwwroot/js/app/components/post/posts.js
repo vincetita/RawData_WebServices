@@ -4,11 +4,11 @@ var dataservice = {
     postlists: function (serviceRoot, callback) {
         $.getJSON(serviceRoot, callback);
     }
-}
+};
 
 var vm = {
     total: ko.observable(),
-    posts: ko.observableArray([]),
+    posts: ko.observableArray([])
     //length: ko.observable()
    
 };
