@@ -4,12 +4,12 @@ define([], function () {
     
     return {
         events: {
-
-            searchUrl: server + "/api/rankword?rankword=",
-            postUrl: server + "/api/posts",
-            historyUrl: server + "/api/history",
-            postsmarkedUrl: server + "/api/markedposts",
-            owncommentsUrl: server + "/api/owncomments",
+            searchPosts: "Search",
+            selectOwnComment: "SelectComment",
+            saveOwnComment: "SaveComment",
+            selectPost: "SelectPost",                        
+            changeMenu: "ChangeMenu"
+            // Remember to add for word cloud later api
         },
 
         menuElements: {
@@ -19,7 +19,18 @@ define([], function () {
             commentsnav: "Comments",
             historynav: "History",
             postsmarkednav: "Posts Marked",
+            //wordcloudnav: "Word Cloud",
             changemenu: "changeMenuEvent"
+        },    
+
+        // For access to server
+
+       serverApi: {
+        searchUrl: serverUrl + "/api/rankword?rankword=",
+        postUrl: serverUrl + "/api/posts",
+        historyUrl: serverUrl + "/api/history",
+        postsmarkedUrl: serverUrl + "/api/markedposts",
+        owncommentsUrl: serverUrl + "/api/owncomments"
         }
-    };
+};
 });

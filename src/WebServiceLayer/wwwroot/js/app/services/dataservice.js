@@ -1,20 +1,65 @@
 ﻿
+define(['jquery', 'config', 'knockout'], function ($, config, ko) {
+    
+    //historyUrl: serverUrl + "/api/history",
+    //postsmarkedUrl: serverUrl + "/api/markedposts",
+    //owncommentsUrl: serverUrl + "/api/owncomments"
 
-var dataservice = {
-     search : function(searchString, callback) {
-         $.getJSON("http://localhost:5489/api/searchkeyword?search=" + searchString, callback);
-           }
-}
+    var getSearchHistory = function (callback) {
+        var url = config.serverApi.historyUrl;
+        $.getJSON(url, function (data) {
+            callback(data);
+        });
+    };
 
-$("#btn").on('click', function () {
-    dataservice.search($("#input").val(), function (data) {
-        $("#output").text(JSON.stringify(
-            data.items.map(function (e) {
-                return {
-                    login: e.login,
-                    id: e.id
-                }
-            })
-            ));
-    });
+    var getPaginationData = function (callback) {
+        var url = config.serverApi.historyUrl;
+        $.getJSON(url,
+            function (data) {
+                callback(data);
+            });
+    };
+
+    var getAnnotation = function (callback) {
+        var url = config.serverApi.owncommentsUrl;
+        $.getJSON(url,
+            function (data) {
+                callback(data);
+            });
+    };
+
+    //var deleteHistory = function (url) {
+
+    //    $.ajax({
+    //        type: "DELETE",
+    //        url: url
+    //    });
+    //};
+
+    var SearchpostsRankword = function (url, searchword, callback) {
+        url = config.serverApi.searchUrl + searchword;
+        $.getJSON(url, function (data) {
+            callback(data);
+        });
+    };
+
+    var postsLists = function (url, callback) {
+        url = config.serverApi.postUrl;
+        $.getJSON(url, function (data) {
+            callback(data);
+        });
+    };
+
+
+    return {
+        getSearchHistory,
+        getAnnotation,
+        getPaginationData,
+        //deleteHistory,
+        SearchpostsRankword,
+        postsLists
+
+    };
 });
+
+
