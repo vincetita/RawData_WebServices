@@ -1,52 +1,52 @@
-﻿//var dataservice = {
-//    search: function (searchString, callback) {
-//        $.getJSON("http://localhost:5489/api/searchkeyword?search=" + searchString, callback);
-//        //var searchedstring = ko.observableArray([]);
-//        //    var addsearchedstr = function () {
-//        //        searchstring.push({
-//        //            searchstring: searchString()
-//        //        });
-//        //        searchString("");
-//        //    }
-//    }
-//}
+﻿define(['knockout', 'dataservice', 'postman', 'config'],
+    function (ko, dataService, postman, config) {
+        return function (params) {
 
-//$("#btn").on('click', function () {
-//    dataservice.search($("#input").val(), function (result) {
-//        ko.applyBindings({
-//            result: result
-//        });
+            var searchkeyword = ko.observable("");
+            var total = ko.observable();
+            var SearchPostsList = ko.observableArray([]);
+            var prev = ko.observable();
+            var next = ko.observable();
 
-//    });
-//});
+            var callback = function (data) {
+                //console.log(data);
 
-////ko.applyBindings(data);
+                total(data.total);
+                SearchPostsList(data.data);
+                prev(data.prev);
+                next(data.next);
+            };
 
-////function Posts(Searchword) {
-////    var self = this;
-////    //self.PostId = ko.observable(Postid);
-////    self.Post = ko.observable(Searchword);
-////    self.PostUrl = ko.computed(function () {
-////        return "../api/searchkeyword?artistId=" + this.Post();
-////    }, this);
-////}
+            var searchRankPost = function () {
+                dataService.getSearchPosts(searchkeyword(), callback);
+            };
 
-////function PostsViewModel() {
-////    // Properties
-////    var self = this;
-////    this.PostsSearched = ko.observableArray([]);
+            var prevLink = function () {
+                dataService.getPaginationData(prev(), callback);
+            };
 
-////    // Functions
-////    this.searchPosts = function () {
-////        var keyword = $('#Searchinput').val();
-////        $('#tbodySearchPosts').empty();
-////        $.getJSON("/api/searchkeyword?search=" + keyword, function (posts) {
-////            $.each(posts, function (index, post) {
-////                self.PostsSearched.push(new Posts(post.postsid, post.body, post.score, post.creationDate));
-////            });
-////        });
-////    };
-////}
+            var nextLink = function () {
+                dataService.getPaginationData(next(), callback);
+            };
+
+            var nextPageUrl = ko.observable(params ? params.url : undefined);
+
+            var postDetail = function (data) {
+                //dataService.getPostDetail(data.url);
+                postman.publish(config.events.searchPosts, { postToSend: data, url: data.url });
+            };
+
+            return {
+                searchkeyword,
+                searchRankPost: searchRankPost,
+                SearchPostsList: SearchPostsList,
+                prevLink: prevLink,
+                nextLink: nextLink,
+                postDetail: postDetail
+                
+            };
+        };
+    });
 
 
 

@@ -5,6 +5,7 @@ define([], function () {
     return {
         events: {
             searchPosts: "Search",
+            postDetails: "PostDetails",
             selectOwnComment: "SelectComment",
             saveOwnComment: "SaveComment",
             selectPost: "SelectPost",                        
@@ -19,6 +20,7 @@ define([], function () {
             commentsnav: "Comments",
             historynav: "History",
             postsmarkednav: "Posts Marked",
+            postsdetailsnav: "Posts Details",
             //wordcloudnav: "Word Cloud",
             changemenu: "changeMenuEvent"
         },    

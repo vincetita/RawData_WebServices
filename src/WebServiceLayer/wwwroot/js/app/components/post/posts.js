@@ -49,11 +49,4 @@ ko.applyBindings(vm);
 //            posts: data
 //        });
 
-    //self.create = function (formElement) {
-    //    // If valid, post the serialized form data to the web api
-    //    $(formElement).validate();
-    //    if ($(formElement).valid()) {
-    //        $.post(baseUri, $(formElement).serialize(), null, "json")
-    //            .done(function (o) { self.products.push(o); });
-    //    }
-    //}
+    

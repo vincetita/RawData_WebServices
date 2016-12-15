@@ -166,7 +166,7 @@ namespace WebServiceLayer.JsonModels
         {
             return new RankingSPModel
             {
-                Url = url.Link(Config.RankWordRoute, new { id = rsp.postsid }),
+                Url = url.Link(Config.PostRoute, new { id = rsp.postsid }),
                 body = rsp.body,
                 Rank = rsp.Rank,
                 title = rsp.title             

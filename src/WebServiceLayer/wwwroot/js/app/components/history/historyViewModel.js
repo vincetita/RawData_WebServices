@@ -23,7 +23,13 @@
 
             var deleteSearchHistory = function (data) {
                 dataService.deleteHistory(data.url);
-                historyList.remove();
+                var list = historyList();
+                list = list.filter(function (e) {
+                    if (e.url === data.url) return false;
+                    return true;
+                });
+                historyList(list);
+                //dataService.getPaginationData(currentPage(), callback);
             };
 
             return {

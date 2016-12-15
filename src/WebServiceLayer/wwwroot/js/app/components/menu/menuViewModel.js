@@ -6,6 +6,7 @@ define(['knockout', 'postman', 'config', 'dataservice'], function (ko, postman, 
             { title: config.menuElements.commentsnav, component: 'annotation-owncomments' },
             { title: config.menuElements.historynav, component: 'history-search' },
             { title: config.menuElements.postsmarkednav, component: 'mark-post' },
+            { title: config.menuElements.postsdetailsnav, component: 'post-details' },
             { title: config.menuElements.wordcloudnav, component: 'word-cloud' }
         ];
 
@@ -23,12 +24,16 @@ define(['knockout', 'postman', 'config', 'dataservice'], function (ko, postman, 
         var isSelected = function (menu) {
             return menu === selectedMenu();
         };
-
+        
         postman.subscribe(config.events.searchPosts, function (params) {
             currentParams(params);
             currentComponent("search-posts");
         });
 
+        postman.subscribe(config.events.searchPosts, function (params) {
+            currentParams(params);
+            currentComponent("post-details");
+        });
         //postman.subscribe(config.events.searchPosts, function (params) {
         //    currentParams(params);
         //    currentComponent("post-details");
@@ -63,6 +68,7 @@ define(['knockout', 'postman', 'config', 'dataservice'], function (ko, postman, 
         return {
             menuItems,
             currentComponent,
+            currentParams,
             selectMenu,
             isSelected
         };

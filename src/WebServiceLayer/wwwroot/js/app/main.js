@@ -27,7 +27,7 @@
         });
 
         ko.components.register("search-posts", {
-            //viewModel: { require: 'app/components/home/homeViewModel' },
+            viewModel: { require: 'app/components/home/homeViewModel' },
             template: { require: 'text!app/components/home/home.html' }
         });
 
@@ -47,17 +47,16 @@
             template: { require: 'text!app/components/history/history.html' }
         });
 
-        
-        ko.components.register("mark-post", {
-            viewModel: { require: 'app/components/markpost/markpostViewModel' }
-            //template: { require: 'text!app/components/markpost/markpost.html' }
+        ko.components.register("post-details", {
+            viewModel: { require: 'app/components/postDetails/postDetailsViewModel' },
+            template: { require: 'text!app/components/postDetails/postDetails.html' }
         });
 
+        //ko.components.register("mark-post", {
+        //    viewModel: { require: 'app/components/markpost/markpostViewModel' }
+        //    //template: { require: 'text!app/components/markpost/markpost.html' }
+        //});   
         
-        //ko.components.register("post-details", {
-        //    viewModel: { require: 'app/components/postDetails/postDetailsViewModel' },
-        //    template: { require: 'text!app/components/postDetails/postDetails.html' }
-        //});
 
         //ko.components.register("word-cloud", {
         //    viewModel: { require: 'app/components/wordCloud/wordCloudViewModel' },
