@@ -22,9 +22,7 @@ namespace WebServiceLayer.Controllers
             .Select(h => ModelFactory.Map(h, Url));
 
             var total = DataService.GetTotalRankWord(rankword);
-            //http://localhost:5489/api/rankword?rankword=map&page=1&pageSize=10
-            //"http://localhost:5489/api/rankword?keyword=map&page=1&pageSize=10",
-            //"http://localhost:5489/api/rankword?rankword=map&page=1&pageSize=10",
+         
             var result = new
             {
                 Total = total,
@@ -35,5 +33,15 @@ namespace WebServiceLayer.Controllers
 
             return Ok(result);
         }
+
+        //[HttpGet("{id}", Name = Config.RankWordRoute)]
+
+        //public IActionResult Get(int id)
+        //{
+        //    var posts = DataService.GetAnswersForSpecificPost(id)
+        //        .Select(p => ModelFactory.Map(p, Url));
+        //    if (posts == null) return NotFound();
+        //    return Ok(posts);
+        //}
     }
 }

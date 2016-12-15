@@ -1,9 +1,13 @@
 ﻿
 define(['jquery', 'config', 'knockout'], function ($, config, ko) {
-    
-    //historyUrl: serverUrl + "/api/history",
-    //postsmarkedUrl: serverUrl + "/api/markedposts",
-    //owncommentsUrl: serverUrl + "/api/owncomments"
+   
+
+    var getSearchPosts = function (searchword, callback) {
+        var url = config.serverApi.searchUrl + searchword;
+        $.getJSON(url, function (data) {
+            callback(data);
+        });
+    };
 
     var getSearchHistory = function (callback) {
         var url = config.serverApi.historyUrl;
@@ -34,7 +38,6 @@ define(['jquery', 'config', 'knockout'], function ($, config, ko) {
             url: url
         });
     };
-   
     var getWordCloud = function (searchValue, callback) {
 
         return $.ajax({
@@ -57,15 +60,42 @@ define(['jquery', 'config', 'knockout'], function ($, config, ko) {
         });
     };
 
-    var postsLists = function (url, callback) {
-        url = config.serverApi.postUrl;
+    var getPostDetail = function (url, callback) {
+        $.getJSON(url, function (data){
+            callback(data);
+        });
+    };
+
+    var getPostDetailsFromDB = function (url, callback) {
         $.getJSON(url, function (data) {
             callback(data);
         });
     };
 
+    var sendannotationToSendToDb = function (annotationData) {
+        //var url = config.serverApi.owncommentsUrl;
+        //var data = ko.toJS(annotationData);
+        //$.ajax({
+        //    url: url,
+        //    type: "Post",
+        //    data: JSON.stringify({ "postId": 19, "commentScore": 1, "commentText": "frontend", "commentCreated": "2016-12-15T15:28:46" }),
+        //    dataType: 'json',
+        //    success: callback
+        //});
+        return jQuery.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            'type': 'POST',
+            'url': 'api/owncomments',
+            'data': JSON.stringify(annotationData),
+            'dataType': 'json'
+        });
+    };
 
     return {
+        getSearchPosts,
         getSearchHistory,
         getAnnotation,
         getPaginationData,

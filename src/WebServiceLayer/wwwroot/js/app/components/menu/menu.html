@@ -10,7 +10,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#">
-                    <img alt="Logo" src="images/logo.png" class="logo-img">
+                    <img alt="Logo" src="images/logo.png" class="logo-img" style="height: 55px">
                 </a>
             </div>
 
@@ -33,5 +33,5 @@
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
-<div data-bind="component: currentComponent"></div>
+<div data-bind="component: {name: currentComponent, params: currentParams}"></div>
 <!--<div data-bind="component: {name: currentComponent, params: currentParams}"></div>-->

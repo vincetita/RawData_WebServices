@@ -1,47 +1,53 @@
 ﻿<div class="row">
     <div class="col-lg-9 col-lg-offset-3">
-        <form class="form-inline search-form">
+        <!--<form class="form-inline search-form" >-->
             <div class="form-group">
-                <h1>Search For the Posts</h1>
-                <input id="input" />
-                <button id="btn">Search</button>
+                <!--<p>Kindly have patience: it will take some time for the data from database </p>-->
+                <input id="input" data-bind="value: searchkeyword" placeholder="Enter Search keyword and Click Search" size="50"/>
+                <button id="btn" data-bind="click: searchRankPost">Search</button>
 
-                <div id="output">All the relevant Posts</div>
-
-                <!--<ul data-bind="foreach: data">
-        <li data-bind="text: Titel"></li>
-        <li data-bind="text: Score"></li>
-    </ul>-->
-                <!--<pre data-bind="text: ko.toJson($root)"></pre>-->
-                <!--Form-->
-                <table>
+               
+                <table class="table table-striped" >
                     <thead>
                         <tr>
                             <th>Title</th>
-                            <th>Score</th>
+                            <th>Rank</th>
+                            <!--<th>Posts Body</th>-->
                         </tr>
                     </thead>
-                    <!--<tbody data-bind="foreach: result" id="tbodySearchPosts">
+                    <tbody data-bind="foreach: SearchPostsList" id="tbodySearchPosts">
                         <tr>
-                            <td data-bind="text: title"></td>
-                            <td data-bind="text: score "></td>
+                            <td><a href="#" data-bind="click: $parent.postDetail"><span  data-bind="text: title"></span></a></td>
+                            <td data-bind="text: rank "></td>
+                            <!--<td data-bind="html: body "></td>-->
 
+                            <!--To mark post-->
+                            <!--<td>
+                                <button class="btn btn-sm btn-danger" data-bind="click: $parent.deleteSearchHistory">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </td>-->
                         </tr>
-                    </tbody>-->
+                    </tbody>
                 </table>
+
+                <nav aria-label="Page navigation" class="col-lg-offset-5">
+                    <ul class="pagination">
+                        <li>
+                            <a href="#" aria-label="Previous" data-bind="click: prevLink">
+                                <span aria-hidden="true">&laquo; Previous</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" aria-label="Next" data-bind="click: nextLink">
+                                <span aria-hidden="true">&raquo; Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
                 </div>
-        </form>
+        <!--</form>-->
+        <!--<post-details></post-details>-->
     </div>
 </div>
-<ul class="list-group">
-    <li><h4 class="list-group-item-heading"><a href="#">Title</a></h4></li>
-    <li><p>Description:<br /> Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p></li>
-</ul>
-<ul class="list-group">
-    <li><h4 class="list-group-item-heading"><a href="#">Title</a></h4></li>
-    <li><p>Description:<br /> Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p></li>
-</ul>
-<ul class="list-group">
-    <li><h4 class="list-group-item-heading"><a href="#">Title</a></h4></li>
-    <li><p>Description:<br /> Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p></li>
-</ul>
+
