@@ -1,10 +1,6 @@
 ﻿
 define(['jquery', 'config', 'knockout'], function ($, config, ko) {
-    
-    //historyUrl: serverUrl + "/api/history",
-    //postsmarkedUrl: serverUrl + "/api/markedposts",
-    //owncommentsUrl: serverUrl + "/api/owncomments"
-    //searchUrl: serverUrl + "/api/rankword?rankword=",
+   
 
     var getSearchPosts = function (searchword, callback) {
         var url = config.serverApi.searchUrl + searchword;
@@ -69,6 +65,28 @@ define(['jquery', 'config', 'knockout'], function ($, config, ko) {
         });
     };
 
+    var sendannotationToSendToDb = function (annotationData) {
+        //var url = config.serverApi.owncommentsUrl;
+        //var data = ko.toJS(annotationData);
+        //$.ajax({
+        //    url: url,
+        //    type: "Post",
+        //    data: JSON.stringify({ "postId": 19, "commentScore": 1, "commentText": "frontend", "commentCreated": "2016-12-15T15:28:46" }),
+        //    dataType: 'json',
+        //    success: callback
+        //});
+        return jQuery.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            'type': 'POST',
+            'url': 'api/owncomments',
+            'data': JSON.stringify(annotationData),
+            'dataType': 'json'
+        });
+    };
+
     return {
         getSearchPosts,
         getSearchHistory,
@@ -77,7 +95,8 @@ define(['jquery', 'config', 'knockout'], function ($, config, ko) {
         deleteHistory,
         //SearchpostsRankword,
         postsLists,
-        getPostDetailsFromDB
+        getPostDetailsFromDB,
+        sendannotationToSendToDb
 
     };
 });

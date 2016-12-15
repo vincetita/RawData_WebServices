@@ -10,6 +10,7 @@
             "knockout": "lib/knockout/dist/knockout",
             "text": "lib/requirejs-text/text",
             "bootstrap": "lib/bootstrap/dist/js/bootstrap",
+            "tether": "lib/bootstrap/dist/js/tether/dist/css/tether",
            
             "dataservice": "app/services/dataservice",
             "postman": "app/services/postman",
