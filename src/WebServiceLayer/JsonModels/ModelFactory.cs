@@ -206,5 +206,23 @@ namespace WebServiceLayer.JsonModels
 
             };
         }
+
+        public static WordCloudModel Map(wordcloud wordCloud, IUrlHelper url)
+        {
+            return new WordCloudModel
+            {
+                text = wordCloud.word,
+                weight = wordCloud.wordrank
+            };
+        }
+
+        public static wordcloud Map(WordCloudModel model)
+        {
+            return new wordcloud
+            {
+                word = model.text,
+                wordrank = model.weight
+            };
+        }
     }
 }

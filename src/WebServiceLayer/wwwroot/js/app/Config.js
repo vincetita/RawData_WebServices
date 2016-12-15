@@ -19,7 +19,7 @@ define([], function () {
             commentsnav: "Comments",
             historynav: "History",
             postsmarkednav: "Posts Marked",
-            //wordcloudnav: "Word Cloud",
+            wordcloudnav: "Word Cloud",
             changemenu: "changeMenuEvent"
         },    
 

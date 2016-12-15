@@ -34,6 +34,21 @@ define(['jquery', 'config', 'knockout'], function ($, config, ko) {
             url: url
         });
     };
+   
+    var getWordCloud = function (searchValue, callback) {
+
+        return $.ajax({
+            type: "Get",
+            url: "api/wordcloud?word=" + searchValue,
+            dataType: 'json',
+            contentType: "application/json",
+            success: function (data) {
+                callback(data);
+            }
+
+        });
+
+    };
 
     var SearchpostsRankword = function (url, searchword, callback) {
         url = config.serverApi.searchUrl + searchword;
@@ -56,7 +71,8 @@ define(['jquery', 'config', 'knockout'], function ($, config, ko) {
         getPaginationData,
         deleteHistory,
         SearchpostsRankword,
-        postsLists
+        postsLists,
+        getWordCloud
 
     };
 });

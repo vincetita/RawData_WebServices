@@ -476,8 +476,35 @@ namespace MySqlDatabase
                     return db.MarkPost.Count();
                 }
             
-        }       
-        
+        }
+
+        public IList<wordcloud> Getwordcloud(string word, int page, int pageSize)
+        {
+            using (var db = new MysqlDataContext())
+            {
+                var cmds = db.WrodCloudProc.FromSql("call wordranking({0})", word)
+                .Skip(page * pageSize)
+                    .Take(pageSize);
+                var result = new List<wordcloud>();
+
+                foreach (var item in cmds)
+                {
+                    result.Add(item);
+                }
+                return result;
+
+            }
+        }
+
+        public int GetWordCloud(string word)
+        {
+            using (var db = new MysqlDataContext())
+            {
+                var cmds = db.WrodCloudProc.FromSql("call wordranking({0})", word).Count();         
+                //var result = cmds.Count();
+                return cmds;
+            }
+        }
     }
 }
 

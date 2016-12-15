@@ -72,7 +72,11 @@ namespace DataAccessLayer
 
         // MarkPosts
         IList<Posts> GetAllMarkedPosts(int page, int pageSize);
-        int GetNumberOfMarkedPosts();        
+        int GetNumberOfMarkedPosts();
+
+        // WordCloud
+        IList<wordcloud> Getwordcloud(string word, int page, int pageSize);
+        int GetWordCloud(string word);
 
     }
 }

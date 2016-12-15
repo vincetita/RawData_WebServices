@@ -10,6 +10,8 @@
             "knockout": "lib/knockout/dist/knockout",
             "text": "lib/requirejs-text/text",
             "bootstrap": "lib/bootstrap/dist/js/bootstrap",
+            "tether":"lib/tether/dist/js/tether.min",
+            "jqcloud2": "lib/jqcloud2/dist/jqcloud",
            
             "dataservice": "app/services/dataservice",
             "postman": "app/services/postman",
@@ -59,10 +61,10 @@
         //    template: { require: 'text!app/components/postDetails/postDetails.html' }
         //});
 
-        //ko.components.register("word-cloud", {
-        //    viewModel: { require: 'app/components/wordCloud/wordCloudViewModel' },
-        //    template: { require: 'text!app/components/wordCloud/word.html' }
-        //});
+        ko.components.register("word-cloud", {
+            viewModel: { require: 'app/components/wordCloud/wordCloudViewModel' },
+            template: { require: 'text!app/components/wordCloud/wordcloud.html' }
+        });
     });
 
         require(['knockout'], function(ko) {

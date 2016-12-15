@@ -36,8 +36,10 @@ namespace WebServiceLayer
         public const string QuestionsRoute = "QuestionsRoute";
         public const string QuestionRoute = "QuestionRoute";
 
-        public const string LinkPostRoute = "LinkPostRoute"; 
-          
-        public const string MarkedPostsRoute = "MarkedPostsRoute";   
+        public const string LinkPostRoute = "LinkPostRoute";
+
+        public const string MarkedPostsRoute = "MarkedPostsRoute";
+
+        public const string WordCloudRoute = "WordcloudRoute";
     }
 }
