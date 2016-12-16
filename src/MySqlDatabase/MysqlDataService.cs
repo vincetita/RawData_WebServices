@@ -492,9 +492,7 @@ namespace MySqlDatabase
         {
             using (var db = new MysqlDataContext())
             {
-                var cmds = db.WrodCloudProc.FromSql("call wordranking({0})", word)
-                .Skip(page * pageSize)
-                    .Take(pageSize);
+                var cmds = db.WrodCloudProc.FromSql("call wordranking({0})", word);
                 var result = new List<wordcloud>();
 
                 foreach (var item in cmds)

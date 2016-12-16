@@ -89,15 +89,7 @@ define(['jquery', 'config', 'knockout'], function ($, config, ko) {
     };
 
     var sendannotationToSendToDb = function (annotationData) {
-        //var url = config.serverApi.owncommentsUrl;
-        //var data = ko.toJS(annotationData);
-        //$.ajax({
-        //    url: url,
-        //    type: "Post",
-        //    data: JSON.stringify({ "postId": 19, "commentScore": 1, "commentText": "frontend", "commentCreated": "2016-12-15T15:28:46" }),
-        //    dataType: 'json',
-        //    success: callback
-        //});
+        
         return jQuery.ajax({
             headers: {
                 'Accept': 'application/json',
@@ -107,6 +99,13 @@ define(['jquery', 'config', 'knockout'], function ($, config, ko) {
             'url': 'api/owncomments',
             'data': JSON.stringify(annotationData),
             'dataType': 'json'
+        });
+    };
+
+    var getMarkPosts = function (callback) {
+        url = config.serverApi.postsmarkedUrl;
+        $.getJSON(url, function (data) {
+            callback(data);
         });
     };
 
@@ -121,7 +120,7 @@ define(['jquery', 'config', 'knockout'], function ($, config, ko) {
         postsLists,
         getWordCloud,
         sendannotationToSendToDb,
-        markPost
+        getMarkPosts
 
     };
 });

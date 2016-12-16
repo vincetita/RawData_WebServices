@@ -1,6 +1,24 @@
-﻿<div class="list-group">
-    <h3 class="list-group-item-heading">Title</h3>
-    <span class="badge alert-danger">Score: 14</span>
-    <p>Body: Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-    <p><a href="#" class="btn btn-primary" role="button">Unmark</a></p>
-</div><hr style="border-color:red; color:red" />
+﻿<div>
+    <h4 class="text-danger">Marked Posts  </h4>
+    <ul data-bind="foreach: markPostList" style="list-style: none;">
+        <li class="badge alert-danger"> Score: <span data-bind="text: score"></span></li>
+        <li class="badge alert-danger"> Created Date: <span data-bind="text: creationDate"></span></li>
+        <li class="list-group-item-text" data-bind="html: body"></li>
+        <p><a href="#" class="btn btn-primary" role="button">Unmark</a></p>
+        <hr style="border-color:red; color:red" />
+    </ul>
+</div>
+<nav aria-label="Page navigation" class="col-lg-offset-5">
+    <ul class="pagination">
+        <li>
+            <a href="#" aria-label="Previous" data-bind="click: prevLink">
+                <span aria-hidden="true">&laquo; Previous</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" aria-label="Next" data-bind="click: nextLink">
+                <span aria-hidden="true">&raquo; Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>

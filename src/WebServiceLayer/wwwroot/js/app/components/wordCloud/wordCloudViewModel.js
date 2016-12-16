@@ -1,6 +1,6 @@
 ﻿define(['knockout', 'dataservice', 'postman', 'config', 'jqcloud2'],
     function (ko, dataService, postman, config, jq) {
-        return function () {
+        return function (params) {
             //var wordList = ko.observableArray([]);
             var searchWord = ko.observable("map");
 

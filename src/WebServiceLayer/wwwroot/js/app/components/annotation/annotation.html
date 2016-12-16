@@ -2,7 +2,7 @@
     <h4 class="text-danger">Annotation:  </h4>
     <ul data-bind="foreach: annotationList" style="list-style: none;">
         <li>
-            <a href="#" class="list-group-item-heading" data-bind="click: postId" style="border-color: red; color: red">
+            <a href="#" class="list-group-item-heading" data-bind="click: $parent.goToPostDetail" style="border-color: red; color: red">
                 <h4 data-bind="text: postId"></h4>
             </a>
         </li>

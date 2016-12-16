@@ -7,7 +7,8 @@ define([], function () {
             searchPosts: "Search",
             selectOwnComment: "SelectComment",
             saveOwnComment: "SaveComment",
-            selectPost: "SelectPost",                        
+            selectPost: "SelectPost",
+            annotationToPost: "AnnotationPost",
             changeMenu: "ChangeMenu"
             // Remember to add for word cloud later api
         },

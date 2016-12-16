@@ -33,10 +33,10 @@
             template: { require: 'text!app/components/home/home.html' }
         });
 
-        ko.components.register("posts-lists", {
-            viewModel: { require: 'app/components/post/posts' }
-        //    template: { require: 'text!app/components/post/post.html' }
-        });
+        //ko.components.register("posts-lists", {
+        //    viewModel: { require: 'app/components/post/posts' }
+        ////    template: { require: 'text!app/components/post/post.html' }
+        //});
 
         ko.components.register("annotation-owncomments", {
            viewModel: { require: 'app/components/annotation/annotationViewModel' },
@@ -49,13 +49,11 @@
             template: { require: 'text!app/components/history/history.html' }
         });
 
-        
         ko.components.register("mark-post", {
-            viewModel: { require: 'app/components/markpost/markpostViewModel' }
-            //template: { require: 'text!app/components/markpost/markpost.html' }
+            viewModel: { require: 'app/components/markpost/markpostsViewModel' },
+            template: { require: 'text!app/components/markpost/markpost.html' }
         });
 
-        
         ko.components.register("post-details", {
             viewModel: { require: 'app/components/postDetails/postDetailsViewModel' },
             template: { require: 'text!app/components/postDetails/postDetails.html' }

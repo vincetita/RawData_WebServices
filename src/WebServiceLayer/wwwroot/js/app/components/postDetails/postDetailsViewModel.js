@@ -6,7 +6,6 @@
             var annotationData = ko.observable();
 
             var callback = function (data) {
-                console.log(data);
                 PostDetails(data);
             };
 

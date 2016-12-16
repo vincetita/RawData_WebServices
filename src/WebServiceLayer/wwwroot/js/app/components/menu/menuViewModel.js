@@ -1,13 +1,11 @@
-﻿
-define(['knockout', 'postman', 'config', 'dataservice'], function (ko, postman, config, dataservice) {
+﻿define(['knockout', 'postman', 'config', 'dataservice'], function (ko, postman, config, dataservice) {
     return function () {
         var menuItems = [
             { title: config.menuElements.homenav, component: 'search-posts' },
             { title: config.menuElements.commentsnav, component: 'annotation-owncomments' },
             { title: config.menuElements.historynav, component: 'history-search' },
             { title: config.menuElements.postsmarkednav, component: 'mark-post' },
-            { title: config.menuElements.postsdetailsnav, component: 'post-details' },
-            { title: config.menuElements.wordcloudnav, component: 'word-cloud' }
+            { title: config.menuElements.postsdetailsnav, component: 'post-details' }
         ];
 
         var currentComponent = ko.observable();
@@ -24,13 +22,18 @@ define(['knockout', 'postman', 'config', 'dataservice'], function (ko, postman, 
         var isSelected = function (menu) {
             return menu === selectedMenu();
         };
-        
+
         postman.subscribe(config.events.searchPosts, function (params) {
             currentParams(params);
             currentComponent("search-posts");
         });
 
         postman.subscribe(config.events.searchPosts, function (params) {
+            currentParams(params);
+            currentComponent("post-details");
+        });
+
+        postman.subscribe(config.events.annotationToPost, function (params) {
             currentParams(params);
             currentComponent("post-details");
         });
@@ -43,7 +46,7 @@ define(['knockout', 'postman', 'config', 'dataservice'], function (ko, postman, 
         //    currentParams(params);
         //    currentComponent("history-search");
         //});
-        
+
         //postman.subscribe(config.events.postsmarkedUrl, function (params) {
         //    currentParams(params);
         //    currentComponent("mark-post");
@@ -74,5 +77,3 @@ define(['knockout', 'postman', 'config', 'dataservice'], function (ko, postman, 
         };
     };
 });
-           
-            

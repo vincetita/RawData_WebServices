@@ -1,53 +1,43 @@
 ﻿<div class="row">
-    <div class="col-lg-9 col-lg-offset-3">
+    <div class="col-lg-12 col-lg-offset-3">
         <!--<form class="form-inline search-form" >-->
             <div class="form-group">
                 <!--<p>Kindly have patience: it will take some time for the data from database </p>-->
                 <input id="input" data-bind="value: searchkeyword" placeholder="Enter Search keyword and Click Search" size="50"/>
                 <button id="btn" data-bind="click: searchRankPost">Search</button>
-
-               
-                <table class="table table-striped" >
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Rank</th>
-                            <!--<th>Posts Body</th>-->
-                        </tr>
-                    </thead>
-                    <tbody data-bind="foreach: SearchPostsList" id="tbodySearchPosts">
-                        <tr>
-                            <td><a href="#" data-bind="click: $parent.postDetail"><span  data-bind="text: title"></span></a></td>
-                            <td data-bind="text: rank "></td>
-                            <!--<td data-bind="html: body "></td>-->
-
-                            <!--To mark post-->
-                            <!--<td>
-                                <button class="btn btn-sm btn-danger" data-bind="click: $parent.deleteSearchHistory">
-                                    <span class="glyphicon glyphicon-remove"></span>
-                                </button>
-                            </td>-->
-                        </tr>
-                    </tbody>
-                </table>
-
-                <nav aria-label="Page navigation" class="col-lg-offset-5">
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous" data-bind="click: prevLink">
-                                <span aria-hidden="true">&laquo; Previous</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" aria-label="Next" data-bind="click: nextLink">
-                                <span aria-hidden="true">&raquo; Next</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
                 </div>
+        </div>
+    <div class="col-lg-8">
+        <div class="list-group" data-bind="foreach: SearchPostsList">
+            <a href="#" class="list-group-item-heading" data-bind="click: $parent.postDetail" style="border-color: red; color: red">
+                <h4 data-bind="text: title"></h4>
+            </a>
+            <div class="badge alert-danger">Score: <span class="badge alert-danger" data-bind="text: rank">Score:</span></div>
+            <p data-bind="html: body"></p>
+            <hr style="border-color:red; color:red" />
+        </div>
+        <nav aria-label="Page navigation" class="col-lg-offset-5" data-bind="if: total">
+            <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="Previous" data-bind="click: prevLink">
+                        <span aria-hidden="true">&laquo; Previous</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" aria-label="Next" data-bind="click: nextLink">
+                        <span aria-hidden="true">&raquo; Next</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
         <!--</form>-->
         <!--<post-details></post-details>-->
+    <div class="col-lg-4">
+        <div id="wordcloud" style="width: 400px; height: 350px; position: relative;">
+        </div>
     </div>
-</div>
+    </div>
+    
 

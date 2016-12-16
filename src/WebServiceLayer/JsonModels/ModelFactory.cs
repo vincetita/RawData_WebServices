@@ -31,7 +31,8 @@ namespace WebServiceLayer.JsonModels
                 CommentCreated = owncomment.CommentCreated,
                 CommentScore = owncomment.CommentScore,
                 CommentText = owncomment.CommentText,
-                PostId = owncomment.PostId
+                PostId = owncomment.PostId,
+                PostUrl = url.Link(Config.PostRoute, new { id = owncomment.PostId })
 
             };
         }

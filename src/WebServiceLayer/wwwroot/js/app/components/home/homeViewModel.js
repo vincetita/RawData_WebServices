@@ -1,5 +1,5 @@
-﻿define(['knockout', 'dataservice', 'postman', 'config'],
-    function (ko, dataService, postman, config) {
+﻿define(['knockout', 'dataservice', 'postman', 'config', 'jqcloud2'],
+    function (ko, dataService, postman, config, jq) {
         return function (params) {
 
             var searchkeyword = ko.observable("");
@@ -9,17 +9,34 @@
             var next = ko.observable();
 
             var callback = function (data) {
-                //console.log(data);
-
+              
                 total(data.total);
                 SearchPostsList(data.data);
                 prev(data.prev);
                 next(data.next);
+                total(data.total);
             };
 
             var searchRankPost = function () {
+                
                 dataService.getSearchPosts(searchkeyword(), callback);
+                
+                dataService.getWordCloud(searchkeyword(), function (data) {
+                    $('#wordcloud').jQCloud(data.data, {
+                        classPattern: null,
+                        colors: ["#0cf", "#0cf",
+                        "#0cf", "#39d", "#90c5f0", "#90a0dd",
+                        "#a0ddff", "#99ccee", "#aab5f0"],
+
+                        fontSize: {
+                            from: 0.15,
+                            to: 0.03
+                        }
+                    });
+                });
+
             };
+
 
             var prevLink = function () {
                 dataService.getPaginationData(prev(), callback);
@@ -42,7 +59,8 @@
                 SearchPostsList: SearchPostsList,
                 prevLink: prevLink,
                 nextLink: nextLink,
-                postDetail: postDetail
+                postDetail: postDetail,
+                total:total
                 
             };
         };

@@ -1,18 +1,17 @@
 ﻿define(['knockout', 'dataservice', 'postman', 'config'],
     function (ko, dataService, postman, config) {
         return function () {
-            var annotationList = ko.observableArray([]);
+            var markPostList = ko.observableArray([]);
             var prev = ko.observable();
             var next = ko.observable();
 
             var callback = function (data) {
-
-                annotationList(data.data);
+                markPostList(data.data);
                 prev(data.prev);
                 next(data.next);
             };
 
-            dataService.getAnnotation(callback);
+            dataService.getMarkPosts(callback);
 
 
             var prevLink = function () {
@@ -22,15 +21,11 @@
             var nextLink = function () {
                 dataService.getPaginationData(next(), callback);
             };
-            var goToPostDetail = function (data) {
-                postman.publish(config.events.annotationToPost, { postToSend: data, url: data.postUrl });
-            };
 
             return {
-                annotationList: annotationList,
+                markPostList: markPostList,
                 prevLink: prevLink,
-                nextLink: nextLink,
-                goToPostDetail: goToPostDetail
+                nextLink: nextLink
             };
         };
     });
