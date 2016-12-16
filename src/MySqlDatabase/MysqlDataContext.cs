@@ -20,6 +20,7 @@ namespace MySqlDatabase
         public DbSet<CombinedUsers> CombineUsers { get; set; }
         public DbSet<SearchKeywordStoredProc> SearchKeyordStoredProc { get; set; }
         public DbSet<RankingStoredProc> RankStoredProc { get; set; }
+        //public DbSet<MarkedPosts> MarkedPostStoredProc { get; set; }
         public DbSet<LinkPosts> LinkPost { get; set; }
         public DbSet<MarkedPosts> MarkPost { get; set; }
         public DbSet<wordcloud> WrodCloudProc { get; set; }
@@ -30,6 +31,7 @@ namespace MySqlDatabase
         {
             modelBuilder.Entity<SearchKeywordStoredProc>().HasKey(t => t.Id);
             modelBuilder.Entity<RankingStoredProc>().HasKey(p => p.postsid);
+            
 
             modelBuilder.Entity<Comments>().ToTable("comments");
             modelBuilder.Entity<Comments>().Property(t => t.CommentId).HasColumnName("commentid");
@@ -112,8 +114,8 @@ namespace MySqlDatabase
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // Connection string For local database
-            //optionsBuilder.UseMySql("server=localhost;database=raw6; uid=root; pwd=root");
-            optionsBuilder.UseMySql("server=localhost;database=database3; uid=root; pwd=12345Mail");
+            optionsBuilder.UseMySql("server=localhost;database=raw6; uid=root; pwd=root");
+            //optionsBuilder.UseMySql("server=localhost;database=database3; uid=root; pwd=12345Mail");
 
             // For testing on wt-220.ruc.dk server
             //optionsBuilder.UseMySql("server=wt-220.ruc.dk;database=raw6; uid=raw6; pwd=raw6");

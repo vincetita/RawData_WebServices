@@ -32,6 +32,13 @@ namespace WebServiceLayer.Controllers
             };
             return Ok(result);
         }
-       
+
+        ////[HttpPost]
+        //public IActionResult Post(int postid)
+        //{
+            
+        //    return Ok();
+        //}
+
     }
 }

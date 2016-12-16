@@ -29,7 +29,7 @@
         });
 
         ko.components.register("search-posts", {
-            //viewModel: { require: 'app/components/home/homeViewModel' },
+            viewModel: { require: 'app/components/home/homeViewModel' },
             template: { require: 'text!app/components/home/home.html' }
         });
 
@@ -56,10 +56,10 @@
         });
 
         
-        //ko.components.register("post-details", {
-        //    viewModel: { require: 'app/components/postDetails/postDetailsViewModel' },
-        //    template: { require: 'text!app/components/postDetails/postDetails.html' }
-        //});
+        ko.components.register("post-details", {
+            viewModel: { require: 'app/components/postDetails/postDetailsViewModel' },
+            template: { require: 'text!app/components/postDetails/postDetails.html' }
+        });
 
         ko.components.register("word-cloud", {
             viewModel: { require: 'app/components/wordCloud/wordCloudViewModel' },

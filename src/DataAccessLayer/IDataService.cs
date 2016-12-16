@@ -73,6 +73,7 @@ namespace DataAccessLayer
         // MarkPosts
         IList<Posts> GetAllMarkedPosts(int page, int pageSize);
         int GetNumberOfMarkedPosts();
+        void AddMarkPost(int postid);
 
         // WordCloud
         IList<wordcloud> Getwordcloud(string word, int page, int pageSize);

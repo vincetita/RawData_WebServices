@@ -37,7 +37,7 @@
             };
 
             return {
-                searchkeyword,
+                searchkeyword: searchkeyword,
                 searchRankPost: searchRankPost,
                 SearchPostsList: SearchPostsList,
                 prevLink: prevLink,

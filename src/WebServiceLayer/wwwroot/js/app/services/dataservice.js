@@ -38,6 +38,15 @@ define(['jquery', 'config', 'knockout'], function ($, config, ko) {
             url: url
         });
     };
+
+    var markPost = function (url) {
+
+        $.ajax({
+            type: "Post",
+            url: url
+        });
+    };
+
     var getWordCloud = function (searchValue, callback) {
 
         return $.ajax({
@@ -55,6 +64,13 @@ define(['jquery', 'config', 'knockout'], function ($, config, ko) {
 
     var SearchpostsRankword = function (url, searchword, callback) {
         url = config.serverApi.searchUrl + searchword;
+        $.getJSON(url, function (data) {
+            callback(data);
+        });
+    };
+
+    var postsLists = function (url, callback) {
+        url = config.serverApi.postUrl;
         $.getJSON(url, function (data) {
             callback(data);
         });
@@ -99,10 +115,13 @@ define(['jquery', 'config', 'knockout'], function ($, config, ko) {
         getSearchHistory,
         getAnnotation,
         getPaginationData,
+        getPostDetailsFromDB,
         deleteHistory,
         SearchpostsRankword,
         postsLists,
-        getWordCloud
+        getWordCloud,
+        sendannotationToSendToDb,
+        markPost
 
     };
 });

@@ -469,6 +469,16 @@ namespace MySqlDatabase
             }
         }
 
+        public void AddMarkPost(int postid)
+        {
+            using (var db = new MysqlDataContext())
+            {
+                //var cmds = db.MarkedPostStoredProc.FromSql("call insert_markpost({0})", postid);
+                         
+                               
+            }
+        }
+
         public int GetNumberOfMarkedPosts()
         {            
                 using (var db = new MysqlDataContext())
@@ -505,6 +515,8 @@ namespace MySqlDatabase
                 return cmds;
             }
         }
+
+        
     }
 }
 
